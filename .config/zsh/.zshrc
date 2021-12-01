@@ -317,6 +317,6 @@ arm'
 alias stego-toolkit='docker run -it --rm -v (pwd):/data dominicbreuker/stego-toolkit /bin/bash'
 
 # dotfile management
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias conf='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 export HISTCONTROL=ignoreboth
