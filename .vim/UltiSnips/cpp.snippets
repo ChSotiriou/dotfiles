@@ -1,0 +1,37 @@
+snippet c63 "Simple Class Template EEEE2063"
+
+class $1;
+
+class $1 {
+
+public:
+
+
+    $1($2);   /* Default Constructor */
+    $1($1 &_$1);    /* Copy Constructor */
+    ~$1();  /* Default Destructor */
+    $1& operator=(const $1 &_$1);
+
+private:
+
+};
+
+$1::$1($2) {
+
+}
+
+$1::$1($1 &_$1) {
+
+}
+
+$1::~$1() {}
+
+$1& $1::operator=(const $1 &_$1) {
+    if (this == &_$1) {return *this;}
+
+
+
+    return *this;
+}
+
+endsnippet

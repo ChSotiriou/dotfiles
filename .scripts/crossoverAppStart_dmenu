@@ -1,0 +1,13 @@
+#!/bin/bash
+
+DATABASE=$(sed 's/\s*#.*//g; /^$/d' $HOME/.local/share/scripts/windowsPrograms)
+OPTIONS=$(echo "$DATABASE" | awk '{print $1}')
+
+choise=$(echo "$OPTIONS" | dmenu -i -p "Windows Programs")
+
+if [ $choise ]; then
+    BOTTLE=$(echo "$DATABASE" | awk "/$choise/ {print \$2}")
+    EXE=$(echo "$DATABASE" | awk "/$choise/ {print \$3}")
+
+    $HOME/cxoffice/bin/wine --bottle "$BOTTLE" --cx-app "$EXE" &
+fi
