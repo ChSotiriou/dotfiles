@@ -42,6 +42,9 @@ exec --no-startup-id flameshot
 exec --no-startup-id evolution
 exec --no-startup-id dunst
 
+# Start compositor
+exec --no-startup-id compton --config $HOME/.config/picom/picom.conf
+
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
@@ -170,8 +173,6 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec --no-startup-id i3-msg exit
 
 # Window Resizing
 bindsym $mod+Shift+y resize shrink width 10 px or 10 ppt
@@ -203,7 +204,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 bindsym $alt+c exec --no-startup-id /usr/bin/firefox
 bindsym $alt+y exec --no-startup-id /usr/bin/alacritty -t "ipython3" -e "ipython3"
-bindsym $alt+l exec --no-startup-id systemctl suspend # Locks automatically
+bindsym $alt+l exec --no-startup-id betterlockscreen -l
 bindsym $alt+f exec --no-startup-id /usr/bin/thunar $HOME
 bindsym $alt+h exec --no-startup-id /usr/bin/alacritty -t "Processes" -e htop
 bindsym $alt+w exec --no-startup-id $HOME/.scripts/crossoverAppStart_dmenu
@@ -212,5 +213,7 @@ bindsym $alt+p exec --no-startup-id $HOME/.scripts/monitorConfig_dmenu
 bindsym $alt+e exec --no-startup-id $HOME/.scripts/unicode_dmenu
 bindsym $alt+1 exec --no-startup-id $HOME/.scripts/switchLanguage
 bindsym Print exec --no-startup-id /usr/bin/flameshot gui
+bindsym Control+$alt+Shift+l exec --no-startup-id systemctl suspend
 bindsym Control+$alt+Shift+s exec --no-startup-id sudo shutdown now
 bindsym Control+$alt+Shift+r exec --no-startup-id sudo reboot
+bindsym Control+$alt+Shift+e exec --no-startup-id i3-msg exit
