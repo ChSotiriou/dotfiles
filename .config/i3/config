@@ -173,23 +173,7 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec --no-startup-id i3-msg exit
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
-
-bindsym $mod+r mode "resize"
-
+# Window Resizing
 bindsym $mod+Shift+y resize shrink width 10 px or 10 ppt
 bindsym $mod+Shift+u resize grow height 10 px or 10 ppt
 bindsym $mod+Shift+i resize shrink height 10 px or 10 ppt
@@ -214,6 +198,7 @@ hide_edge_borders none
 for_window [class="^.*"] border pixel 2
 
 
+# Start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 bindsym $alt+c exec --no-startup-id /usr/bin/firefox
@@ -221,7 +206,7 @@ bindsym $alt+y exec --no-startup-id /usr/bin/alacritty -t "ipython3" -e "ipython
 bindsym $alt+l exec --no-startup-id systemctl suspend # Locks automatically
 bindsym $alt+f exec --no-startup-id /usr/bin/thunar $HOME
 bindsym $alt+h exec --no-startup-id /usr/bin/alacritty -t "Processes" -e htop
-bindsym $alt+w exec --no-startup-id $HOME/.scripts/crossoverAppStart_dmenu # /usr/bin/VBoxManage startvm "Windows 10"
+bindsym $alt+w exec --no-startup-id $HOME/.scripts/crossoverAppStart_dmenu
 bindsym $alt+n exec --no-startup-id /usr/bin/notion-app
 bindsym $alt+p exec --no-startup-id $HOME/.scripts/monitorConfig_dmenu
 bindsym $alt+e exec --no-startup-id $HOME/.scripts/unicode_dmenu
