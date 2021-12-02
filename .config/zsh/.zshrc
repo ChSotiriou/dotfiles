@@ -133,7 +133,7 @@ alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 alias riplong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | nl"
 
 #Cleanup orphaned packages
-alias cleanup='sudo pacman -Rns (pacman -Qtdq)'
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
 #give the list of all installed desktops - xsessions desktops
 alias xd="ls /usr/share/xsessions"
@@ -188,12 +188,12 @@ neofetch
 #colorscript random
 
 # pwnenv
-alias pwnenv18='docker run --net=host --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it --rm --name pwnenv18 -v (pwd):/home/pwn/data pwnenv18
+alias pwnenv18='docker run --net=host --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it --rm --name pwnenv18 -v $(pwd):/home/pwn/data pwnenv18
 '
-alias pwnenvarm='docker run --net=host --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it --rm --name pwnenvarm -v (pwd):/home/pwn/data pwnenv
+alias pwnenvarm='docker run --net=host --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it --rm --name pwnenvarm -v $(pwd):/home/pwn/data pwnenv
 arm'
 
-alias stego-toolkit='docker run -it --rm -v (pwd):/data dominicbreuker/stego-toolkit /bin/bash'
+alias stego-toolkit='docker run -it --rm -v $(pwd):/data dominicbreuker/stego-toolkit /bin/bash'
 
 # dotfile management
 alias conf='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
