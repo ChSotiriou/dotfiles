@@ -17,7 +17,7 @@ set $alt Mod1
 font pango:"Source Code Pro" 12
 
 # transparency
-# exec --no-startup-id prime-run picom --config $HOME/.config/picom/picom.conf
+exec --no-startup-id prime-run picom --config $HOME/.config/picom/picom.conf
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -41,9 +41,6 @@ exec --no-startup-id rclone --vfs-cache-mode writes mount SharePoint-UoN-FS: /ho
 exec --no-startup-id flameshot
 exec --no-startup-id evolution
 exec --no-startup-id dunst
-
-# Start compositor
-exec --no-startup-id compton --config $HOME/.config/picom/picom.conf
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -208,7 +205,7 @@ bindsym $alt+l exec --no-startup-id betterlockscreen -l
 bindsym $alt+f exec --no-startup-id /usr/bin/thunar $HOME
 bindsym $alt+h exec --no-startup-id /usr/bin/alacritty -t "Processes" -e htop
 bindsym $alt+w exec --no-startup-id $HOME/.scripts/crossoverAppStart_dmenu
-bindsym $alt+n exec --no-startup-id /usr/bin/notion-app
+bindsym $alt+n exec --no-startup-id $HOME/.local/bin/notion
 bindsym $alt+p exec --no-startup-id $HOME/.scripts/monitorConfig_dmenu
 bindsym $alt+e exec --no-startup-id $HOME/.scripts/unicode_dmenu
 bindsym $alt+1 exec --no-startup-id $HOME/.scripts/switchLanguage

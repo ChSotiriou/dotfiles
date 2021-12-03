@@ -1000,9 +1000,9 @@ format-prefix = "  "
 format-prefix-foreground = #0f0
 label = %output:0:150%
 
-click-left = playerctl previous -p spotify
 click-right = playerctl next -p spotify
-click-middle = playerctl play-pause -p spotify
+double-click-right = playerctl previous -p spotify
+click-left = playerctl play-pause -p spotify
 
 ################################################################################
 
