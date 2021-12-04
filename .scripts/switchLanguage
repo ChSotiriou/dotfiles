@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 current=$(setxkbmap -query | grep -i layout | awk '{print $2}')
 

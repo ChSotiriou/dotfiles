@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
 profile=$(/bin/ls $HOME/.config/autorandr/ | sed "s/\s/\n/g" | dmenu -i -p "Monitor Configuration")
 
-if [[ "$profile"  ]]; then
+if [ "$profile"  ]; then
     notify-send "Loading $profile"
     /usr/bin/autorandr --load $profile && sleep 5 && nitrogen --restore
 fi

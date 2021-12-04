@@ -1,3 +1,0 @@
-#!/bin/bash
-
-/usr/bin/fortivpn connect uon_vpn --user="$UON_EMAIL"

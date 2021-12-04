@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 DATABASE=$(sed 's/\s*#.*//g; /^$/d' $HOME/.local/share/scripts/windowsPrograms)
 OPTIONS=$(echo "$DATABASE" | awk '{print $1}')
