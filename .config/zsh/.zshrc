@@ -1,5 +1,8 @@
 # ZSH Configurations
 
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
 eval "$(starship init zsh)"
 
 HISTSIZE=10000000

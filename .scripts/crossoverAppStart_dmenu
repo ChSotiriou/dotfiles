@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DATABASE=$(sed 's/\s*#.*//g; /^$/d' $HOME/.local/share/scripts/windowsPrograms)
+DATABASE=$(sed 's/\s*#.*//g; /^$/d' $HOME/.local/share/scripts/windowsPrograms | sort)
 OPTIONS=$(echo "$DATABASE" | awk '{print $1}')
 
 choise=$(echo "$OPTIONS" | dmenu -i -p "Windows Programs")
