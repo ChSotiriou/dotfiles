@@ -1,0 +1,251 @@
+extends fpga
+
+snippet ff "sequential logic"
+always_ff @ (posedge ${1:clk} or negedge ${2:rst})
+begin
+    ${3:/*code*/}
+end
+
+endsnippet
+
+snippet comb "combination logic"
+always_comb
+begin
+    ${1:/*code*/}
+end
+endsnippet
+
+snippet latch "D latch"
+always_latch
+begin
+    ${1:/*code*/}
+end
+endsnippet
+
+snippet inside "a inside x"
+${1:/*var*/} inside ${2:/*var*/}
+endsnippet
+
+snippet log  "logic"
+logic                       ${1:inport};
+endsnippet
+
+snippet logb "logic  [xx:00]"
+logic   [${1:MSB}:00]             ${2:inport};
+endsnippet
+
+snippet in      "input logic  inport"
+input   logic               ${1:inport},
+endsnippet
+
+snippet inb     "input wire [MSB:0] inport"
+input   logic   [${1:MSB}:00]     ${2:inport},
+endsnippet
+
+#output
+snippet our    "logic  xxx"
+output  logic               ${1:outport},
+endsnippet
+
+snippet outr    "logic  [MSB:00]"
+output  logic   [${1:MSB}:00]     ${2:outport},
+endsnippet
+
+snippet package
+package ${1:name};
+endpackage
+endsnippet
+
+snippet state   "one hot encode machine state"
+localparam              IDLE    = 0;
+localparam              OVER    = 1;
+(* KEEP = "TRUE" *)reg    [OVER:00]        cs = 'd1, ns = 'd1;
+reg     [15:00]         state_cnt;
+
+// synthesis translate_off
+reg [127:0] cs_STRING;
+always @(*)
+begin
+    case(1'b1)
+        cs[IDLE]: cs_STRING = "IDLE";
+        cs[HEAD]: cs_STRING = "HEAD";
+        default: cs_STRING = "XXXX";
+    endcase
+end
+// synthesis translate_on
+
+always_ff @(posedge clk)
+begin
+    if(rst)
+        cs <= 'd1;
+    else
+        cs <= ns;
+end
+
+always_comb @(*)
+begin
+    ns = 'd0;
+    case(1'b1)
+        cs[IDLE]:
+        begin
+            if(/*condition*/)
+                ns[/*next_state*/] = 1'b1;
+            else
+                ns[IDLE] = 1'b1;
+        end
+        cs[HEAD]:
+        begin
+            if(/*condition*/)
+                ns[/*next_state*/] = 1'b1;
+            else
+                ns[HEAD] = 1'b1;
+        end
+        default:
+            ns[IDLE] = 1'b1;
+    endcase
+end
+
+
+always_ff @ (posedge clk)
+begin
+    if(rst)
+    begin
+    end
+    else
+    begin
+        case (1'b1)
+            ns[IDLE]:
+            begin
+                /*code*/
+            end
+            /*code*/
+            default:
+            begin
+                /*code*/
+            end
+        endcase
+    end
+end
+
+always_ff @ (posedge clk)
+begin
+    if(rst)
+        state_cnt <= 0;
+    else if (cs != ns)
+        state_cnt <= 0;
+    else
+        state_cnt <= state_cnt + 1'b1;
+end
+endsnippet
+
+#######################################################################
+######################   SIM          #################################
+#######################################################################
+snippet array "unpacked array"
+${1:type} name[${2:msb}:0];
+endsnippet
+
+snippet array "packed array"
+${1:type} [${2:msb}:0]name;
+endsnippet
+
+snippet queue   "queue"
+${1:int} ${2:name}[$] ${3:= {3,4}};
+endsnippet
+
+snippet interface   "use it like module"
+interface ${1:name}
+(
+    input logic clk,
+    input logic rst,
+);
+/*
+    wire xxx;
+    logic xxx;
+*/
+
+endinterface
+endsnippet
+
+snippet struct  "typedef struct"
+typedef struct packed
+{
+    /*data*/;
+}${1:/*struct*/}_s;
+endsnippet
+
+snippet union     "typedef union"
+typedef union packed
+{
+    /*data*/;
+}${1:/*union*/}_u;
+endsnippet
+
+snippet foreach
+foreach(${1:name}[${2:index}])
+endsnippet
+
+snippet task    "task template"
+task ${1:name}($2);
+    $3
+endtask
+endsnippet
+
+snippet function     "function template"
+function ${1:void} ${2:name}($3);
+$4
+endfunction
+endsnippet
+
+snippet assert  "assert ... else"
+assert(${1:condition})
+else
+    $error(${2:failed});
+endsnippet
+
+snippet urandom	"urandom_range"
+${1:veriable} = \$urandom_range(0, 255);
+endsnippet
+
+snippet mail
+endsnippet
+
+snippet program "program block"
+program ${1:name}
+(
+);
+$2
+endprogram
+endsnippet
+
+snippet enum "typdef enum"
+typedef enum
+{
+    IDLE,
+    WRITE
+    //and so on
+}${1:name};
+$1      /*instance*/;
+endsnippet
+
+
+snippet covergroup "covergroup basic template"
+covergroup ${1:name} @(posedge clk);
+    address : coverpoint addr
+    {
+        bins low = {0, 50};
+        bins med = {51, 150};
+        bins med = {151, 152};
+    }
+endgroup
+endsnippet
+
+snippet coverpoint "coverpoint template"
+${1:name} : coverpoint ${2:name}
+{
+    bins low = {0, 50};
+    bins med = {51, 100};
+    bins hig = {101, 150};
+}
+
+endsnippet

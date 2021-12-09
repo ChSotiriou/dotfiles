@@ -1,0 +1,49 @@
+snippet in      "input       port"
+input                       ${1:port},
+endsnippet
+
+snippet inb     "input      [MSB:0] port"
+input        [${1:MSB}:0]        ${2:port},
+endsnippet
+
+snippet outr    "output port"
+output  reg                 ${1:port},
+endsnippet
+
+snippet outrb    "reg  [MSB:0] variable"
+output  reg  [${1:MSB}:0]        ${2:port},
+endsnippet
+
+snippet outw    "wire  variable"
+output                      ${1:variable},
+endsnippet
+
+snippet outwb    "wire [MSB:0] variable"
+output       [${1:MSB}:0]        ${2:variable},
+endsnippet
+
+#reg
+snippet reg
+reg                         ${1:outport};
+endsnippet
+
+snippet regb
+reg     [${1:MSB}:0]             ${2:outport};
+endsnippet
+
+#wire
+snippet wi      "wire   port"
+wire                        ${1:port};
+endsnippet
+
+snippet wib     "wire   [MSB:0] port"
+wire    [${1:MSB}:0]             ${2:port};
+endsnippet
+
+snippet parami	"parameter decleration with initial value"
+parameter $1 = $2;
+endsnippet
+
+snippet param	"parameter definition"
+parameter $1;
+endsnippet

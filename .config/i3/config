@@ -38,9 +38,13 @@ exec --no-startup-id xrdb $HOME/.Xresources
 exec --no-startup-id sleep 10; insync start
 exec --no-startup-id rclone --vfs-cache-mode writes mount SharePoint-UoN-FS: /home/christoss/SharePoint-UoN-FS/
 
+# general utilities
 exec --no-startup-id flameshot
 exec --no-startup-id evolution
 exec --no-startup-id dunst
+
+# Map touchscreen to correct screen
+exec --no-startup-id sleep 5; xinput --map-to-output "Wacom HID 490A Finger" eDP1
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.

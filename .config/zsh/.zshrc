@@ -52,7 +52,8 @@ key[Down]="^[[B"
 # ------------------ Custom Config --------------------
 
 #editor
-alias v='vim'
+alias v='nvim'
+alias vim='nvim'
 
 #list
 alias ls='exa --icons --long --header'

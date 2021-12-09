@@ -5,4 +5,5 @@ profile=$(/bin/ls $HOME/.config/autorandr/ | sed "s/\s/\n/g" | dmenu -i -p "Moni
 if [ "$profile"  ]; then
     notify-send "Loading $profile"
     /usr/bin/autorandr --load $profile && sleep 5 && nitrogen --restore
+    xinput --map-to-output "Wacom HID 490A Finger" eDP1
 fi
