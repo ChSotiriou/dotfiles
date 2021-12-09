@@ -1,7 +1,13 @@
+set shell zsh
+set shellopts '-eu'
+set ifs "\n"
+
 set previewer ~/scripts/lf/preview
 set drawbox true
 set icons true
 set ignorecase true
+
+set promptfmt "\033[32m➜  \033[36m%w \033[1;35m\033[0m"
 
 cmd open ${{
     case $(file --mime-type "$f" -bL) in
@@ -51,6 +57,23 @@ cmd dragon-individual %dragon-drag-and-drop $fx
 cmd cpdragon %cpdragon
 cmd mvdragon %mvdragon
 cmd dlfile %dlfile
+
+cmd on-cd &{{
+    # display git repository status in your prompt
+    source /usr/share/git/completion/git-prompt.sh
+    GIT_PS1_SHOWDIRTYSTATE=auto
+    GIT_PS1_SHOWSTASHSTATE=auto
+    GIT_PS1_SHOWUNTRACKEDFILES=auto
+    GIT_PS1_SHOWUPSTREAM=auto
+    GIT_PS1_COMPRESSSPARSESTATE=auto
+    git=$(__git_ps1 " \ue0a0 %s]") || true
+    fmt="\033[32m➜  \033[36m%w \033[1;35m$git\033[0m"
+    lf -remote "send $id set promptfmt \"$fmt\""
+}}
+
+cmd on-start %{{
+    printf "daw"
+}}
 
 # Bindings
 # Remove some defaults

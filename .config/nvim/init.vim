@@ -18,6 +18,7 @@ Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'junegunn/goyo.vim'
 Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'VebbNix/lf-vim'
 
 Plug 'scrooloose/nerdcommenter'
 
