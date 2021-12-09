@@ -1,7 +1,8 @@
 # DMENU, BOTTLE, EXE
-# LTSpice
-LTSpiceXVII     LTSpice_XVII            XVIIx86.exe
+# General
+LTSpiceXVII                 |General                |XVIIx86.exe
+Saturn PCB Toolkit          |General                |PCB Toolkit V8.06.exe
 # Microsoft Office
-Word            Microsoft_Office_365    WINWORD.EXE
-Excel           Microsoft_Office_365    EXCEL.EXE
-PowerPoint      Microsoft_Office_365    POWERPNT.EXE
+Word                        |Microsoft_Office_365   |WINWORD.EXE
+Excel                       |Microsoft_Office_365   |EXCEL.EXE
+PowerPoint                  |Microsoft_Office_365   |POWERPNT.EXE

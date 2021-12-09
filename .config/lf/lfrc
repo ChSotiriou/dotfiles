@@ -1,0 +1,99 @@
+set previewer ~/scripts/lf/preview
+set drawbox true
+set icons true
+set ignorecase true
+
+cmd open ${{
+    case $(file --mime-type "$f" -bL) in
+        text/*|application/json) $EDITOR "$f";;
+        *) devour xdg-open "$f" ;;
+    esac
+}}
+
+cmd mkdir %{{
+    printf "Directory Name: "
+    read ans
+    mkdir $ans
+}}
+
+cmd mkfile ${{
+    printf "Filename: "
+    read ans
+    $EDITOR $ans
+}}
+
+cmd fzf_jump ${{
+  res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
+
+
+cmd broot_jump ${{
+  f=$(mktemp)
+  res="$(broot --outcmd $f && cat $f | sed 's/cd //')"
+  rm -f "$f"
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
+
+cmd dragon %dragon-drag-and-drop -a -x $fx
+cmd dragon-stay %dragon-drag-and-drop -a $fx
+cmd dragon-individual %dragon-drag-and-drop $fx
+cmd cpdragon %cpdragon
+cmd mvdragon %mvdragon
+cmd dlfile %dlfile
+
+# Bindings
+# Remove some defaults
+map m
+map o
+map n
+map "'"
+map '"'
+map d
+map c
+map e
+map f
+
+map q quit
+map f fzf_jump
+
+map ee $$EDITOR "$f"
+
+# dragon
+map dr dragon
+map ds dragon-stay
+map di dragon-individual
+map dm mvdragon
+map dc cpdragon
+map dl dlfile
+
+# Basic Functions
+map . set hidden!
+map DD delete
+map p paste
+map x cut
+map y copy
+map <enter> open
+map mf mkfile
+map md mkdir
+map ch chmod
+map r rename
+map H top
+map L bottom
+map R reload
+map C clear
+map U unselect
+
+# Movement
+map ~ cd ~
+map gt cd /tmp

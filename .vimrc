@@ -18,6 +18,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'unblevable/quick-scope'
 
 Plug 'honza/vim-snippets' | Plug 'SirVer/ultisnips'
 Plug 'junegunn/fzf.vim'
@@ -77,6 +78,12 @@ let g:gitgutter_map_keys = 0
 
 " hexokinase
 let g:Hexokinase_highlighters = ['backgroundfull']
+
+" Vim QuickScope
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 
 " Vim with default settings does not allow easy switching between multiple files
 " in the same editor window. Users can use multiple split windows or multiple

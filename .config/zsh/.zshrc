@@ -22,17 +22,10 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
 
-# Load command-not-found
-source /usr/share/oh-my-zsh/plugins/command-not-found/command-not-found.plugin.zsh 2> /dev/null
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Load zsh-history-substring-search
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-
-# Load zsh-autosuggestions
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # ------------------ Keybindings   --------------------
 bindkey -e
@@ -44,6 +37,8 @@ key[Alt-Left]="${terminfo[kLFT3]}"
 key[Alt-Right]="${terminfo[kRIT3]}"
 key[Alt-Delete]="${terminfo[kDC3]}"
 key[Delete]="${terminfo[kdch1]}"
+key[Up]="^[[A"
+key[Down]="^[[B"
 
 [[ -n "${key[Alt-Left]}"  ]] && bindkey -- "${key[Alt-Left]}"  backward-word
 [[ -n "${key[Alt-Right]}" ]] && bindkey -- "${key[Alt-Right]}" forward-word
@@ -51,6 +46,8 @@ key[Delete]="${terminfo[kdch1]}"
 [[ -n "${key[Control-Right]}" ]] && bindkey -- "${key[Control-Right]}" forward-word
 [[ -n "${key[Delete]}"    ]] && bindkey -- "${key[Delete]}"     delete-char
 [[ -n "${key[Alt-Delete]}"    ]] && bindkey -- "${key[Alt-Delete]}"     delete-word
+[[ -n "${key[Up]}"    ]] && bindkey -- "${key[Up]}"     history-substring-search-up
+[[ -n "${key[Down]}"    ]] && bindkey -- "${key[Down]}"    history-substring-search-down
 
 # ------------------ Custom Config --------------------
 
@@ -202,3 +199,5 @@ alias stego-toolkit='docker run -it --rm -v $(pwd):/data dominicbreuker/stego-to
 alias conf='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 export HISTCONTROL=ignoreboth
+
+source /home/christoss/.config/broot/launcher/bash/br
