@@ -21,6 +21,7 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'VebbNix/lf-vim'
 
 Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-surround'
 
 Plug 'scrooloose/nerdtree'
 Plug 'tsony-tsonev/nerdtree-git-plugin'
@@ -66,7 +67,6 @@ set shell=/bin/sh
 
 " NERDTree
 " autocmd VimEnter * NERDTree " Open NERDTree on startup nnoremap <leader>t :NERDTreeToggle<CR>
-
 let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Modified'  :'✹',
                 \ 'Staged'    :'✚',
