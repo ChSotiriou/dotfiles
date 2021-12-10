@@ -22,6 +22,7 @@ Plug 'VebbNix/lf-vim'
 
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
+Plug 'jiangmiao/auto-pairs'
 
 Plug 'scrooloose/nerdtree'
 Plug 'tsony-tsonev/nerdtree-git-plugin'
@@ -45,6 +46,15 @@ call plug#end()
 " language server | autocomplete | lsp
 set completeopt=menu,menuone,noselect
 luafile $XDG_CONFIG_HOME/nvim/lua/lsp.lua
+
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
 " Keep vim background the same as terminal background
 autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
@@ -102,6 +112,7 @@ let g:gitgutter_enabled = 1
 let g:gitgutter_map_keys = 0
 
 " hexokinase
+set termguicolors
 let g:Hexokinase_highlighters = ['backgroundfull']
 
 " Vim QuickScope
@@ -265,6 +276,8 @@ nnoremap <leader>v :vsplit<CR>
 
 nnoremap <C-s> :w<CR>
 nnoremap <C-q> :q<CR>
+
+nnoremap <C-w> :bd<CR>
 
 "------------------------------------------------------------
 

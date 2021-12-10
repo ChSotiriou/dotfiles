@@ -32,6 +32,10 @@ cmd mkfile ${{
     $EDITOR $ans
 }}
 
+cmd copy_cwd &{{
+   pwd | tr -d '\n' | xsel -b
+}}
+
 cmd fzf_jump ${{
   res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
   if [ -f "$res" ]; then
@@ -42,6 +46,16 @@ cmd fzf_jump ${{
   lf -remote "send $id $cmd \"$res\""
 }}
 
+cmd fzf_config ${{
+  res="$HOME/.config/$(/bin/ls $HOME/.config | fzf --reverse --header='Jump to config')"
+  echo $res
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
 
 cmd broot_jump ${{
   f=$(mktemp)
@@ -75,10 +89,6 @@ cmd on-cd &{{
     lf -remote "send $id set promptfmt \"$fmt\""
 }}
 
-cmd on-start %{{
-    printf "daw"
-}}
-
 # Bindings
 # Remove some defaults
 map m
@@ -93,6 +103,7 @@ map f
 
 map q quit
 map f fzf_jump
+map c fzf_config
 
 map ee $$EDITOR "$f"
 
@@ -110,6 +121,7 @@ map DD delete
 map p paste
 map x cut
 map y copy
+map Y copy_cwd
 map <enter> open
 map mf mkfile
 map md mkdir
@@ -120,7 +132,10 @@ map L bottom
 map R reload
 map C clear
 map U unselect
+map t &devour alacritty
 
 # Movement
 map ~ cd ~
 map gt cd /tmp
+map gc cd ~/.config
+map gu cd ~/OneDrive-UoN/2021-2022

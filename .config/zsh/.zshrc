@@ -27,6 +27,8 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Load zsh-history-substring-search
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
+setopt auto_cd
+
 # ------------------ Keybindings   --------------------
 bindkey -e
 
