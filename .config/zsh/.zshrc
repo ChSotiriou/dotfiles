@@ -1,4 +1,5 @@
 # ZSH Configurations
+source $XDG_CONFIG_HOME/zsh/.zshenv
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -28,6 +29,10 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 setopt auto_cd
+function chpwd() {
+    emulate -L zsh
+    exa --icons --long --header
+}
 
 # ------------------ Keybindings   --------------------
 bindkey -e
@@ -59,6 +64,7 @@ alias vim='nvim'
 
 #list
 alias ls='exa --icons --long --header'
+
 alias la='ls -a'
 alias ll='ls -la'
 alias l='ls'
@@ -200,6 +206,14 @@ alias stego-toolkit='docker run -it --rm -v $(pwd):/data dominicbreuker/stego-to
 
 # dotfile management
 alias conf='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+alias sx='startx'
+
+# git aliases
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
 
 export HISTCONTROL=ignoreboth
 

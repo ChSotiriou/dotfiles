@@ -1,7 +1,7 @@
 set shell zsh
 set shellopts '-eu'
-set ifs "\n"
 
+set icons
 set previewer ~/.config/lf/preview
 set cleaner ~/.config/lf/cleaner
 set preview
@@ -18,18 +18,28 @@ cmd open ${{
         text/*|application/json) $EDITOR "$f";;
         *) devour xdg-open "$f" ;;
     esac
+
+    lf -remote "send $id reload"
+    lf -remote "send $id on-cd"
 }}
 
 cmd mkdir %{{
     printf "Directory Name: "
     read ans
     mkdir $ans
+
+    lf -remote "send $id reload"
+    lf -remote "send $id on-cd"
 }}
 
 cmd mkfile ${{
+    clear
     printf "Filename: "
     read ans
     $EDITOR $ans
+
+    lf -remote "send $id reload"
+    lf -remote "send $id on-cd"
 }}
 
 cmd copy_cwd &{{
@@ -37,36 +47,24 @@ cmd copy_cwd &{{
 }}
 
 cmd fzf_jump ${{
-  res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
-  if [ -f "$res" ]; then
-    cmd="select"
-  elif [ -d "$res" ]; then
-    cmd="cd"
-  fi
-  lf -remote "send $id $cmd \"$res\""
+    res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
+    if [ -f "$res" ]; then
+      cmd="select"
+    elif [ -d "$res" ]; then
+      cmd="cd"
+    fi
+    lf -remote "send $id $cmd \"$res\""
 }}
 
 cmd fzf_config ${{
-  res="$HOME/.config/$(/bin/ls $HOME/.config | fzf --reverse --header='Jump to config')"
-  echo $res
-  if [ -f "$res" ]; then
-    cmd="select"
-  elif [ -d "$res" ]; then
-    cmd="cd"
-  fi
-  lf -remote "send $id $cmd \"$res\""
-}}
-
-cmd broot_jump ${{
-  f=$(mktemp)
-  res="$(broot --outcmd $f && cat $f | sed 's/cd //')"
-  rm -f "$f"
-  if [ -f "$res" ]; then
-    cmd="select"
-  elif [ -d "$res" ]; then
-    cmd="cd"
-  fi
-  lf -remote "send $id $cmd \"$res\""
+    res="$HOME/.config/$(/bin/ls $HOME/.config | fzf --reverse --header='Jump to config')"
+    echo $res
+    if [ -f "$res" ]; then
+      cmd="select"
+    elif [ -d "$res" ]; then
+      cmd="cd"
+    fi
+    lf -remote "send $id $cmd \"$res\""
 }}
 
 cmd dragon %dragon-drag-and-drop -a -x $fx
@@ -89,6 +87,43 @@ cmd on-cd &{{
     lf -remote "send $id set promptfmt \"$fmt\""
 }}
 
+# git commands
+cmd git-status ${{
+    if [ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]; then
+        git -c color.status=always status | less -R
+        lf -remote "send $id reload"
+    fi
+}}
+
+cmd git-log ${{
+    if [ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]; then
+        git log --color=always --decorate=full | less -R
+        lf -remote "send $id reload"
+    fi
+}}
+
+cmd git-add %{{
+    if [ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]; then
+        echo $fx | xargs -d '\n' git add
+        lf -remote "send $id reload"
+        lf -remote "send $id on-cd"
+        lf -remote "send $id unselect"
+        printf "Staged Selected Changes"
+    fi
+}}
+
+cmd git-commit %{{
+    if [ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]; then
+        printf "Commit Message: "
+        read message
+        git commit -m "$message"
+        lf -remote "send $id reload"
+        lf -remote "send $id on-cd"
+        printf "Commited Changes"
+    fi
+}}
+
+
 # Bindings
 # Remove some defaults
 map m
@@ -100,6 +135,7 @@ map d
 map c
 map e
 map f
+map v
 
 map q quit
 map f fzf_jump
@@ -115,6 +151,8 @@ map dm mvdragon
 map dc cpdragon
 map dl dlfile
 
+map <c-r>
+
 # Basic Functions
 map . set hidden!
 map DD delete
@@ -127,12 +165,21 @@ map mf mkfile
 map md mkdir
 map ch chmod
 map r rename
+map br $vimv $fx
 map H top
 map L bottom
 map R reload
 map C clear
 map U unselect
+map <c-a> glob-select *
+map i invert
 map t &devour alacritty
+
+# git commands
+map vs git-status
+map vl git-log
+map va git-add
+map vc git-commit
 
 # Movement
 map ~ cd ~

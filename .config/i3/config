@@ -206,15 +206,17 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 bindsym $alt+c exec --no-startup-id /usr/bin/firefox
 bindsym $alt+y exec --no-startup-id /usr/bin/alacritty -t "ipython3" -e "ipython3"
 bindsym $alt+l exec --no-startup-id betterlockscreen -l
-bindsym $alt+f exec --no-startup-id /usr/bin/alacritty -t "File Manager" -e 'lf'
+bindsym $alt+f exec --no-startup-id $HOME/.scripts/lfopen
 bindsym $alt+h exec --no-startup-id /usr/bin/alacritty -t "Processes" -e htop
 bindsym $alt+w exec --no-startup-id $HOME/.scripts/crossoverAppStart_dmenu
+bindsym $alt+Shift+W exec --no-startup-id VBoxManage startvm "Windows 10"
 bindsym $alt+n exec --no-startup-id $HOME/.local/bin/notion
 bindsym $alt+p exec --no-startup-id $HOME/.scripts/monitorConfig_dmenu
 bindsym $alt+e exec --no-startup-id $HOME/.scripts/unicode_dmenu
 bindsym $alt+1 exec --no-startup-id $HOME/.scripts/switchLanguage
-bindsym $alt+z exec --no-startup-id $HOME/.scripts/cpcolor
 bindsym Print exec --no-startup-id /usr/bin/flameshot gui
+bindsym --release $alt+z exec --no-startup-id $HOME/.scripts/cpcolor
+bindsym --release $alt+Shift+q exec --no-startup-id xkill
 bindsym Control+$alt+Shift+l exec --no-startup-id systemctl suspend
 bindsym Control+$alt+Shift+s exec --no-startup-id sudo shutdown now
 bindsym Control+$alt+Shift+r exec --no-startup-id sudo reboot
