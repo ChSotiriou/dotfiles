@@ -52,6 +52,7 @@ vim.cmd([[
     autocmd VimLeave * call system("xsel -ib", getreg('+'))
 ]])
 
+vim.api.nvim_set_option('backup', false)
 
 -------------------------------------------------------------------------------
 

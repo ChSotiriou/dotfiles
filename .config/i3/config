@@ -216,7 +216,7 @@ bindsym $alt+e exec --no-startup-id $HOME/.scripts/unicode_dmenu
 bindsym $alt+1 exec --no-startup-id $HOME/.scripts/switchLanguage
 bindsym Print exec --no-startup-id /usr/bin/flameshot gui
 bindsym --release $alt+z exec --no-startup-id $HOME/.scripts/cpcolor
-bindsym --release $alt+Shift+q exec --no-startup-id xkill
+bindsym --release $mod+Shift+q exec --no-startup-id xkill
 bindsym Control+$alt+Shift+l exec --no-startup-id systemctl suspend
 bindsym Control+$alt+Shift+s exec --no-startup-id sudo shutdown now
 bindsym Control+$alt+Shift+r exec --no-startup-id sudo reboot
