@@ -212,6 +212,7 @@ alias sx='startx'
 # git aliases
 alias gs='git status'
 alias ga='git add'
+alias gr='git restore'
 alias gc='git commit'
 alias gp='git push'
 

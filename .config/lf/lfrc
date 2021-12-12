@@ -112,6 +112,26 @@ cmd git-add %{{
     fi
 }}
 
+cmd git-restore-staged %{{
+    if [ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]; then
+        echo $fx | xargs -d '\n' git restore --staged
+        lf -remote "send $id reload"
+        lf -remote "send $id on-cd"
+        lf -remote "send $id unselect"
+        printf "Restored Changes"
+    fi
+}}
+
+cmd git-restore %{{
+    if [ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]; then
+        echo $fx | xargs -d '\n' git restore
+        lf -remote "send $id reload"
+        lf -remote "send $id on-cd"
+        lf -remote "send $id unselect"
+        printf "Restored Changes"
+    fi
+}}
+
 cmd git-commit %{{
     if [ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]; then
         printf "Commit Message: "
@@ -179,6 +199,8 @@ map t &devour alacritty
 map vs git-status
 map vl git-log
 map va git-add
+map vrr git-restore
+map vrs git-restore-staged
 map vc git-commit
 
 # Movement
