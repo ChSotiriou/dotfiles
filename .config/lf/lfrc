@@ -102,6 +102,16 @@ cmd git-log ${{
     fi
 }}
 
+cmd git-branch ${{
+    if [ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]; then
+ 	branches=$(git branch | sed "s/^..//g")
+	choice=$(echo $branches | fzf)
+	git checkout $choice
+        lf -remote "send $id reload"
+        lf -remote "send $id on-cd"
+    fi
+}}
+
 cmd git-add %{{
     if [ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]; then
         echo $fx | xargs -d '\n' git add
@@ -143,6 +153,14 @@ cmd git-commit %{{
     fi
 }}
 
+cmd git-push %{{
+    if [ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]; then
+	git push
+        lf -remote "send $id reload"
+        lf -remote "send $id on-cd"
+        printf "Pushed Changes to remote branch"
+    fi
+}}
 
 # Bindings
 # Remove some defaults
@@ -198,10 +216,12 @@ map t &devour alacritty
 # git commands
 map vs git-status
 map vl git-log
+map vb git-branch
 map va git-add
 map vrr git-restore
 map vrs git-restore-staged
 map vc git-commit
+map vp git-push
 
 # Movement
 map ~ cd ~

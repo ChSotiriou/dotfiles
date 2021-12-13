@@ -122,9 +122,11 @@ vim.api.nvim_set_option('pastetoggle', '<F11>')
 
 -- Indentation settings for using 4 spaces instead of tabs.
 -- Do not change 'tabstop' from its default value of 8 with this setup.
-vim.api.nvim_set_option('shiftwidth', 4)
-vim.api.nvim_set_option('softtabstop', 4)
-vim.api.nvim_set_option('expandtab', true)
+vim.cmd([[
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+]])
 
 -------------------------------------------------------------------------------
 

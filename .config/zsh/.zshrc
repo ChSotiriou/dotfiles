@@ -210,11 +210,16 @@ alias conf='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias sx='startx'
 
 # git aliases
-alias gs='git status'
-alias ga='git add'
-alias gr='git restore'
-alias gc='git commit'
-alias gp='git push'
+alias vs='git status'
+alias va='git add'
+alias vr='git restore'
+alias vc='git commit'
+alias vp='git push'
+
+# goto aliases
+alias gt='cd /tmp'
+alias gc='cd ~/.config'
+alias gu='cd ~/OneDrive-UoN/2021-2022'
 
 export HISTCONTROL=ignoreboth
 
