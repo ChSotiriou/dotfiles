@@ -212,9 +212,12 @@ alias sx='startx'
 # git aliases
 alias vs='git status'
 alias va='git add'
+alias vb='git branch'
+alias vm='git merge'
 alias vr='git restore'
 alias vc='git commit'
 alias vp='git push'
+alias vl='git log'
 
 # goto aliases
 alias gt='cd /tmp'

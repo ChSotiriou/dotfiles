@@ -20,12 +20,12 @@ vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>Telescope find_files<cr>', defa
 vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', default_opts)
 vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', default_opts)
 vim.api.nvim_set_keymap('n', '<leader>fs', '<cmd>Telescope lsp_workspace_symbols<cr>', default_opts)
-vim.api.nvim_set_keymap('n', '<leader>fd', '<cmd>Telescope lsp_workspace_diagnostics<cr>', default_opts)
+vim.api.nvim_set_keymap('n', '<leader>fd', '<cmd>Telescope diagnostics<cr>', default_opts)
 
 ------------------------------------------------------------------
 
--- NERDCommenter
-vim.api.nvim_set_keymap('', '<leader>/', '<plug>NERDCommenterToggle', {})
+-- vim commentary
+vim.api.nvim_set_keymap('', '<leader>/', ':Commentary<CR>', {})
 
 ------------------------------------------------------------------
 

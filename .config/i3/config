@@ -19,7 +19,7 @@ set $TERMINAL alacritty
 font pango:"Source Code Pro" 12
 
 # transparency
-exec --no-startup-id prime-run picom --config $HOME/.config/picom/picom.conf
+exec --no-startup-id prime-run picom -b --config $HOME/.config/picom/picom.conf
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
