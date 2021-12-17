@@ -5,6 +5,7 @@ return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
 
     use 'neovim/nvim-lspconfig'
+    use 'sbdchd/neoformat'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-nvim-lua'
     use 'hrsh7th/cmp-buffer'
@@ -13,6 +14,7 @@ return require('packer').startup(function()
     use 'hrsh7th/nvim-cmp'
     use 'quangnguyen30192/cmp-nvim-ultisnips'
     use 'nvim-treesitter/nvim-treesitter'
+    use 'nvim-treesitter/playground'
 
     -- telescope
     use 'nvim-lua/plenary.nvim'

@@ -21,6 +21,7 @@ vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', defau
 vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', default_opts)
 vim.api.nvim_set_keymap('n', '<leader>fs', '<cmd>Telescope lsp_workspace_symbols<cr>', default_opts)
 vim.api.nvim_set_keymap('n', '<leader>fd', '<cmd>Telescope diagnostics<cr>', default_opts)
+vim.api.nvim_set_keymap('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', default_opts)
 
 ------------------------------------------------------------------
 
@@ -40,7 +41,7 @@ vim.api.nvim_set_keymap('', '<C-p>', '"+P', {})
 
 -- Map <C-L> (redraw screen) to also turn off search highlighting until the
 -- next search
-vim.api.nvim_set_keymap('n', '<C-L>', ':nohl<CR><C-L>', default_opts)
+vim.api.nvim_set_keymap('n', '<C-c>', ':nohl<CR><C-L>', default_opts)
 
 -- Spell Checker
 vim.api.nvim_set_keymap('', '<F6>', ':setlocal spell! spelllang=en_uk<CR>', {})
@@ -56,5 +57,11 @@ vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', default_opts)
 vim.api.nvim_set_keymap('n', '<C-q>', ':q<CR>', default_opts)
 
 vim.api.nvim_set_keymap('n', '<C-w>', ':bd<CR>', default_opts)
+
+-- navigate splits
+vim.api.nvim_set_keymap('', '<C-h>', '<C-w>h', default_opts)
+vim.api.nvim_set_keymap('', '<C-j>', '<C-w>j', default_opts)
+vim.api.nvim_set_keymap('', '<C-k>', '<C-w>k', default_opts)
+vim.api.nvim_set_keymap('', '<C-l>', '<C-w>l', default_opts)
 
 ------------------------------------------------------------------

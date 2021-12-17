@@ -183,6 +183,7 @@ require'cmp'.setup.cmdline(':', {
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 require('lspconfig')['clangd'].setup{ capabilities = capabilities }
 require('lspconfig')['cmake'].setup{ capabilities = capabilities }
+require('lspconfig')['dockerls'].setup{ capabilities = capabilities }
 require('lspconfig')['vimls'].setup{ capabilities = capabilities }
 require('lspconfig')['sumneko_lua'].setup{
     settings = {
@@ -207,6 +208,38 @@ require('lspconfig')['sumneko_lua'].setup{
     },
     capabilities = capabilities
 }
+
+-------------------------------------------------------------------------------
+
+-- Treesitter Setup
+require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
+
+-------------------------------------------------------------------------------
+
+-- Neoformat
+
+-- C/C++
+vim.cmd([[
+    let g:neoformat_cpp_clangformat = {
+    \    'exe': 'clang-format',
+    \    'args': ['--style="{IndentWidth: 4}"']
+    \}
+]])
+vim.g.neoformat_enabled_cpp = { 'clangformat' }
+vim.g.neoformat_enabled_c = { 'clangformat' }
+
+vim.cmd('autocmd BufWritePre *c,*.cpp,*.h,*.hpp Neoformat')
+
+-- CMake
+vim.cmd([[
+    let g:neoformat_cmake_cmakeformat = {
+    \    'exe': 'cmake-format',
+    \    'args': ['--tab-size 4']
+    \}
+]])
+vim.g.neoformat_enabled_cmake = { 'cmakeformat' }
+
+vim.cmd('autocmd BufWritePre CMakeLists.txt Neoformat')
 
 -------------------------------------------------------------------------------
 
