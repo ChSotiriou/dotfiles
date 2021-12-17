@@ -193,6 +193,7 @@ map c
 map e
 map f
 map v
+map w
 
 map q quit
 map f fzf_jump
@@ -249,3 +250,4 @@ map ~ cd ~
 map gt cd /tmp
 map gc cd ~/.config
 map gu cd ~/OneDrive-UoN/2021-2022
+map gf cd "~/OneDrive-UoN/Formula Students/"
