@@ -19,22 +19,20 @@ set $TERMINAL alacritty
 font pango:"Source Code Pro" 12
 
 # transparency
-exec --no-startup-id prime-run picom -b --config $HOME/.config/picom/picom.conf
+exec --no-startup-id prime-run picom -b --config $HOME/.config/picom/picom.conf --experimental-backends
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
-# Start XDG autostart .desktop files using dex. See also
-# https://wiki.archlinux.org/index.php/XDG_Autostart
-exec --no-startup-id dex --autostart --environment i3
-
 # set monitors
-exec --no-startup-id sleep 1; autorandr --change; nitrogen --restore
+exec --no-startup-id sleep 1; autorandr --change && nitrogen --restore
 bindsym $alt+0 exec --no-startup-id $HOME/.scripts/toggleScreenOrientation
 
 # Mouse Pointer xcursor
 exec --no-startup-id xrdb $HOME/.Xresources
+# keyboard
+exec --no-startup-id xmodmap ~/.config/.Xmodmap
 
 # remote directories
 exec --no-startup-id sleep 10; insync start
@@ -75,7 +73,7 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id $TERMINAL
+bindsym $mod+Return exec --no-startup-id prime-run $TERMINAL
 
 # kill focused window
 bindsym $mod+q kill
