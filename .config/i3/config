@@ -37,11 +37,13 @@ exec --no-startup-id xmodmap ~/.config/.Xmodmap
 # remote directories
 exec --no-startup-id sleep 10; insync start
 exec --no-startup-id rclone --vfs-cache-mode writes mount SharePoint-UoN-FS: /home/christoss/SharePoint-UoN-FS/
+exec --no-startup-id nextcloud --background &
 
 # general utilities
 exec --no-startup-id flameshot
 exec --no-startup-id evolution
 exec --no-startup-id dunst
+exec --no-startup-id udiskie --no-appindicator
 
 # Map touchscreen to correct screen
 exec --no-startup-id sleep 5; xinput --map-to-output "Wacom HID 490A Finger" eDP1
@@ -56,6 +58,9 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
+
+# Blueman Applet
+exec --no-startup-id blueman-applet
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id [ $(getVolume) -ge 95 ] || pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -73,13 +78,14 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id prime-run $TERMINAL
+bindsym $mod+Return exec --no-startup-id $TERMINAL
 
 # kill focused window
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
 bindsym $alt+space exec --no-startup-id dmenu_run -i
+bindsym Control+$alt+space exec --no-startup-id dmenu_run_gpu -i
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -147,6 +153,7 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
+set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -158,6 +165,7 @@ bindsym $mod+6 workspace number $ws6
 bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -169,6 +177,7 @@ bindsym $mod+Shift+6 move container to workspace number $ws6
 bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -209,7 +218,7 @@ bindsym $alt+l exec --no-startup-id betterlockscreen -l
 bindsym $alt+f exec --no-startup-id $HOME/.scripts/lfopen
 bindsym $alt+h exec --no-startup-id $TERMINAL -t "Processes" -e htop
 bindsym $alt+w exec --no-startup-id $HOME/.scripts/crossoverAppStart_dmenu
-bindsym $alt+Shift+W exec --no-startup-id VBoxManage startvm "Windows 10"
+bindsym $alt+v exec --no-startup-id $HOME/.scripts/vmopen_dmenu
 bindsym $alt+n exec --no-startup-id $HOME/.local/bin/notion
 bindsym $alt+p exec --no-startup-id $HOME/.scripts/monitorConfig_dmenu
 bindsym $alt+e exec --no-startup-id $HOME/.scripts/unicode_dmenu

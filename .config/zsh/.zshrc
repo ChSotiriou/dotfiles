@@ -68,7 +68,7 @@ alias ls='exa --icons --long --header'
 alias la='ls -a'
 alias ll='ls -la'
 alias l='ls'
-alias l.="ls -A | egrep '^\.'"
+alias l.="ls -a | egrep '^\.'"
 
 #change directory
 alias ..='cd ..'
@@ -197,12 +197,13 @@ neofetch
 #colorscript random
 
 # pwnenv
-alias pwnenv18='docker run --net=host --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it --rm --name pwnenv18 -v $(pwd):/home/pwn/data pwnenv18
-'
-alias pwnenvarm='docker run --net=host --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it --rm --name pwnenvarm -v $(pwd):/home/pwn/data pwnenv
-arm'
+alias pwnenv='docker run --net=host --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it --rm --name pwnenv -v $(pwd):/root/data pwnenv'
 
 alias stego-toolkit='docker run -it --rm -v $(pwd):/data dominicbreuker/stego-toolkit /bin/bash'
+
+alias penenv='docker run -it --rm -v $(pwd):/root/data penenv'
+
+alias dv='devour'
 
 # dotfile management
 alias conf='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
@@ -223,7 +224,9 @@ alias vl='git log'
 alias gt='cd /tmp'
 alias gc='cd ~/.config'
 alias gu='cd ~/OneDrive-UoN/2021-2022'
+alias gn='cd ~/Nextcloud'
+alias gm='cd /run/media'
+
+alias cyber='cd ~/Nextcloud/Cybersecurity'
 
 export HISTCONTROL=ignoreboth
-
-source /home/christoss/.config/broot/launcher/bash/br

@@ -1,4 +1,3 @@
-local map = vim.api.nvim_set_keymap
 local default_opts = { noremap = true, silent = true }
 
 ------------------------------------------------------------------
@@ -30,6 +29,27 @@ vim.api.nvim_set_keymap('', '<leader>/', ':Commentary<CR>', {})
 
 ------------------------------------------------------------------
 
+-- Vimspector
+vim.api.nvim_set_keymap('n', '<leader>dl', ':call vimspector#Launch()<CR>', default_opts)
+vim.api.nvim_set_keymap('n', '<leader>dr', ':VimspectorReset<CR>', default_opts)
+
+vim.api.nvim_set_keymap('n', '<leader>db', ':call vimspector#ToggleBreakpoint()<CR>', default_opts)
+
+------------------------------------------------------------------
+
+-- Compile Commands
+vim.api.nvim_set_keymap('n', '<F5>', ':w! <bar> !comp %<CR><CR>', default_opts)
+vim.api.nvim_set_keymap('n', '<leader><F5>', ':!opout %<CR><CR>', default_opts)
+
+------------------------------------------------------------------
+
+-- Vimsnippets
+vim.g.UltiSnipsExpandTrigger = "<tab>"
+vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
+vim.g.UltiSnipsJumpBackwardTrigger = "<S-tab>"
+
+------------------------------------------------------------------
+
 -- General Mappings
 -- Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
 -- which is the default
@@ -44,7 +64,11 @@ vim.api.nvim_set_keymap('', '<C-p>', '"+P', {})
 vim.api.nvim_set_keymap('n', '<C-c>', ':nohl<CR><C-L>', default_opts)
 
 -- Spell Checker
-vim.api.nvim_set_keymap('', '<F6>', ':setlocal spell! spelllang=en_uk<CR>', {})
+vim.api.nvim_set_keymap('', '<leader><F6>', ':setlocal spell!<CR>', {})
+
+-- Change Language
+vim.api.nvim_set_keymap('n', '<F6>', ':lua ChangeLanguage()<CR>', {})
+vim.api.nvim_set_keymap('i', '<F6>', '<ESC>:lua ChangeLanguage()<CR>i', {})
 
 -- Goyo
 vim.api.nvim_set_keymap('', '<F10>', ':Goyo<CR>', {})
@@ -55,8 +79,6 @@ vim.api.nvim_set_keymap('n', '<leader>v', ':vsplit<CR>', default_opts)
 
 vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', default_opts)
 vim.api.nvim_set_keymap('n', '<C-q>', ':q<CR>', default_opts)
-
-vim.api.nvim_set_keymap('n', '<C-w>', ':bd<CR>', default_opts)
 
 -- navigate splits
 vim.api.nvim_set_keymap('', '<C-h>', '<C-w>h', default_opts)

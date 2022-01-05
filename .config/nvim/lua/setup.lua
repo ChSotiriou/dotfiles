@@ -115,6 +115,10 @@ vim.cmd('set notimeout ttimeout ttimeoutlen=200')
 -- Use <F11> to toggle between 'paste' and 'nopaste'
 vim.api.nvim_set_option('pastetoggle', '<F11>')
 
+-- Use intuitive split location
+vim.api.nvim_set_option('splitright', true)
+vim.api.nvim_set_option('splitbelow', true)
+
 -------------------------------------------------------------------------------
 
 -- Indentation options
@@ -185,6 +189,10 @@ require('lspconfig')['clangd'].setup{ capabilities = capabilities }
 require('lspconfig')['cmake'].setup{ capabilities = capabilities }
 require('lspconfig')['dockerls'].setup{ capabilities = capabilities }
 require('lspconfig')['vimls'].setup{ capabilities = capabilities }
+require('lspconfig')['texlab'].setup{
+    capabilities = capabilities,
+    filetypes = { 'tex', 'bib', 'md' }
+}
 require('lspconfig')['sumneko_lua'].setup{
     settings = {
         Lua = {
@@ -199,6 +207,7 @@ require('lspconfig')['sumneko_lua'].setup{
             workspace = {
                 -- Make the server aware of Neovim runtime files
                 library = vim.api.nvim_get_runtime_file("", true),
+                checkThirdParty = false,
             },
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = {
@@ -211,8 +220,43 @@ require('lspconfig')['sumneko_lua'].setup{
 
 -------------------------------------------------------------------------------
 
+-- Keymaps
+function ChangeLanguage()
+    local languages = {
+        {'', 'en_gb'}, -- Default (English)
+        {'greek_utf-8', 'el'}
+    }
+
+    for i = 1, #languages do
+        if vim.api.nvim_get_option('keymap') == languages[i][1] then
+            vim.cmd(':set keymap=' .. languages[(i % #languages) + 1][1])
+            vim.cmd(':setlocal spelllang=' .. languages[(i % #languages) + 1][2])
+            return
+        end
+    end
+end
+
+
+-------------------------------------------------------------------------------
+
+-- Use markdown.pandoc for everything
+vim.cmd([[
+augroup pandoc_syntax
+    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+augroup END
+]])
+
+-------------------------------------------------------------------------------
+
 -- Treesitter Setup
 require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
+
+-------------------------------------------------------------------------------
+
+-- vim-cmake
+vim.g.cmake_build_dir_location = 'build'
+vim.g.cmake_default_config = ''
+vim.g.cmake_root_markers = { 'build' }
 
 -------------------------------------------------------------------------------
 
@@ -240,6 +284,12 @@ vim.cmd([[
 vim.g.neoformat_enabled_cmake = { 'cmakeformat' }
 
 vim.cmd('autocmd BufWritePre CMakeLists.txt Neoformat')
+
+-------------------------------------------------------------------------------
+
+-- FLoaterm
+vim.g.floaterm_wintype = 'split'
+vim.g.floaterm_width = 0.4
 
 -------------------------------------------------------------------------------
 

@@ -67,7 +67,7 @@ cmd fzf_config ${{
     lf -remote "send $id $cmd \"$res\""
 }}
 
-cmd dragon %dragon-drag-and-drop -a -x $fx
+cmd dragon %echo $fx | xargs -d '\n' dragon-drag-and-drop -a -x
 cmd dragon-stay %dragon-drag-and-drop -a $fx
 cmd dragon-individual %dragon-drag-and-drop $fx
 cmd cpdragon %cpdragon
@@ -251,3 +251,5 @@ map gt cd /tmp
 map gc cd ~/.config
 map gu cd ~/OneDrive-UoN/2021-2022
 map gf cd "~/OneDrive-UoN/Formula Students/"
+map gn cd "~/Nextcloud"
+map gm cd "/run/media/"
