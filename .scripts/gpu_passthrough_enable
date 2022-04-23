@@ -1,0 +1,21 @@
+#!/bin/sh
+
+if [ $(id -u) -ne 0 ]; then
+    /bin/echo "Please run as root"
+    exit 1
+fi
+
+if [ "$1" != "force" ]; then
+    if [ -f /etc/modprobe.d/vfio.conf ]; then
+        /bin/echo "GPU Passthrough already enabled"
+        /bin/echo 'Use `$0 force` to force execution'
+        exit 1
+    fi
+fi
+
+/bin/echo "options vfio-pci ids=10de:1f91" > /etc/modprobe.d/vfio.conf
+/bin/sed -i 's/^MODULES.*/MODULES="vfio_pci vfio vfio_iommu_type1 vfio_virqfd"/' /etc/mkinitcpio.conf
+/usr/bin/mkinitcpio -p linux-lts
+
+# Enable GPU in VM
+/bin/cp /home/christoss/Documents/Virtual\ Machines/Windows-10.gpu.xml /etc/libvirt/qemu/Windows-10.xml

@@ -1,0 +1,2 @@
+#!/bin/sh
+dmenu_path | dmenu "$@" | prime-run ${SHELL:-"/bin/sh"} &

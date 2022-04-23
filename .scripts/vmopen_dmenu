@@ -1,0 +1,8 @@
+#!/bin/sh
+
+vm=$(/bin/ls $HOME/Documents/Virtual\ Machines/VMWare | sed "s/\s/\n/g" | dmenu -i -p "Virtual Machine")
+
+if [ "$vm"  ]; then
+    notify-send "Opening $vm VM"
+    vmrun -T ws start $HOME/Documents/Virtual\ Machines/VMWare/$vm/$vm.vmx
+fi

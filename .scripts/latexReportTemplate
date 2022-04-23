@@ -1,0 +1,5 @@
+#!/bin/sh
+
+sed "s/<__references__>/$1/" ${HOME}/.config/latexTemplates/template.tex > "$1.tex"
+cp -r ${HOME}/.config/latexTemplates/images ${HOME}/.config/latexTemplates/uonTitlePage.tex .
+ln -s ${HOME}/.config/latexTemplates/references.bib "$(pwd)/$1.bib"

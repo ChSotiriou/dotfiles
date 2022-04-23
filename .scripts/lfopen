@@ -1,0 +1,4 @@
+#!/bin/sh
+
+. $XDG_CONFIG_HOME/zsh/.zshenv
+$TERMINAL -t "File Manager" -e lf
