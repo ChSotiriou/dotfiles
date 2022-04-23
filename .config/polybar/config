@@ -1304,7 +1304,7 @@ type = internal/xwindow
 ;   %title%
 ; Default: %title%
 label = %title%
-label-maxlen = 50
+label-maxlen = 75
 
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}

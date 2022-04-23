@@ -29,7 +29,7 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 		mediainfo "$1" "$2" "$3" "$4" "$5"
 		;;
 	*)
-		highlight --out-format ansi "$1" || cat "$1"
+		highlight --out-format ansi "$1" || bat "$1"
 		;;
 esac
 exit 0

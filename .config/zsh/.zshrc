@@ -43,14 +43,15 @@ key[Control-Right]="${terminfo[kRIT5]}"
 key[Alt-Left]="${terminfo[kLFT3]}"
 key[Alt-Right]="${terminfo[kRIT3]}"
 key[Alt-Delete]="${terminfo[kDC3]}"
+key[Alt-Backspace]="${terminfo[kbs3]}"
 key[Delete]="${terminfo[kdch1]}"
 key[Up]="^[[A"
 key[Down]="^[[B"
 
-[[ -n "${key[Alt-Left]}"  ]] && bindkey -- "${key[Alt-Left]}"  backward-word
-[[ -n "${key[Alt-Right]}" ]] && bindkey -- "${key[Alt-Right]}" forward-word
-[[ -n "${key[Control-Left]}"  ]] && bindkey -- "${key[Control-Left]}"  backward-word
-[[ -n "${key[Control-Right]}" ]] && bindkey -- "${key[Control-Right]}" forward-word
+[[ -n "${key[Alt-Left]}"  ]] && bindkey -- "${key[Alt-Left]}"  vi-backward-word
+[[ -n "${key[Alt-Right]}" ]] && bindkey -- "${key[Alt-Right]}" vi-forward-word
+[[ -n "${key[Control-Left]}"  ]] && bindkey -- "${key[Control-Left]}"  vi-backward-word
+[[ -n "${key[Control-Right]}" ]] && bindkey -- "${key[Control-Right]}" vi-forward-word
 [[ -n "${key[Delete]}"    ]] && bindkey -- "${key[Delete]}"     delete-char
 [[ -n "${key[Alt-Delete]}"    ]] && bindkey -- "${key[Alt-Delete]}"     delete-word
 [[ -n "${key[Up]}"    ]] && bindkey -- "${key[Up]}"     history-substring-search-up
@@ -68,6 +69,7 @@ alias ls='exa --icons --long --header'
 alias la='ls -a'
 alias ll='ls -la'
 alias l='ls'
+alias lg='ls -la . | grep'
 alias l.="ls -a | egrep '^\.'"
 
 #change directory
@@ -87,11 +89,10 @@ alias updqte='sudo pacman -Syyu'
 alias upqll="paru -Syu --noconfirm"
 alias upal="paru -Syu --noconfirm"
 
-## Colorize the grep command output for ease of use (good for log files)##
-alias grep='rg'
-
-# Colorize less
+# And He said: "Let there be color!"
+alias grep='grep --color'
 alias less='less -R'
+alias ip='ip --color'
 
 # du
 alias du='dust'
@@ -176,7 +177,7 @@ ex ()
 
 # opening common files
 alias pdf='okular'
-alias img='feh'
+alias img='nsxiv -a'
 
 alias clip='xsel -b'
 
@@ -196,12 +197,7 @@ neofetch
 #cpufetch
 #colorscript random
 
-# pwnenv
-alias pwnenv='docker run --net=host --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it --rm --name pwnenv -v $(pwd):/root/data pwnenv'
-
-alias stego-toolkit='docker run -it --rm -v $(pwd):/data dominicbreuker/stego-toolkit /bin/bash'
-
-alias penenv='docker run -it --rm -v $(pwd):/root/data penenv'
+source ${HOME}/.config/zsh/docker_run_functions.sh
 
 alias dv='devour'
 
@@ -225,8 +221,15 @@ alias gt='cd /tmp'
 alias gc='cd ~/.config'
 alias gu='cd ~/OneDrive-UoN/2021-2022'
 alias gn='cd ~/Nextcloud'
+alias gs='cd ~/SharePoint-UoN-FS/'
 alias gm='cd /run/media'
 
 alias cyber='cd ~/Nextcloud/Cybersecurity'
 
+alias fpga_env='source ~/Nextcloud/FPGA/fpga-tools/fpga_env'
+
 export HISTCONTROL=ignoreboth
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /usr/bin/virtualenvwrapper.sh

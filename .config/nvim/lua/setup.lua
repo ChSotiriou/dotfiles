@@ -127,9 +127,9 @@ vim.api.nvim_set_option('splitbelow', true)
 -- Indentation settings for using 4 spaces instead of tabs.
 -- Do not change 'tabstop' from its default value of 8 with this setup.
 vim.cmd([[
-set shiftwidth=4
-set softtabstop=4
-set expandtab
+setlocal shiftwidth=4
+setlocal softtabstop=4
+setlocal expandtab
 ]])
 
 -------------------------------------------------------------------------------
@@ -217,6 +217,7 @@ require('lspconfig')['sumneko_lua'].setup{
     },
     capabilities = capabilities
 }
+require'lspconfig'.rust_analyzer.setup{}
 
 -------------------------------------------------------------------------------
 
@@ -330,5 +331,11 @@ vim.cmd([[
 highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
 highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 ]])
+
+-------------------------------------------------------------------------------
+
+-- Vimtex
+
+vim.g.vimtex_mappings_enabled = 0
 
 -------------------------------------------------------------------------------

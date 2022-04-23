@@ -38,8 +38,8 @@ vim.api.nvim_set_keymap('n', '<leader>db', ':call vimspector#ToggleBreakpoint()<
 ------------------------------------------------------------------
 
 -- Compile Commands
-vim.api.nvim_set_keymap('n', '<F5>', ':w! <bar> !comp %<CR><CR>', default_opts)
-vim.api.nvim_set_keymap('n', '<leader><F5>', ':!opout %<CR><CR>', default_opts)
+vim.api.nvim_set_keymap('n', '<F5>', ':w! <bar> !compile %<CR><CR>', default_opts)
+vim.api.nvim_set_keymap('n', '<leader><F5>', ':!openOutput %<CR><CR>', default_opts)
 
 ------------------------------------------------------------------
 
@@ -85,5 +85,8 @@ vim.api.nvim_set_keymap('', '<C-h>', '<C-w>h', default_opts)
 vim.api.nvim_set_keymap('', '<C-j>', '<C-w>j', default_opts)
 vim.api.nvim_set_keymap('', '<C-k>', '<C-w>k', default_opts)
 vim.api.nvim_set_keymap('', '<C-l>', '<C-w>l', default_opts)
+
+-- split lines
+vim.api.nvim_set_keymap('', 'Q', 'gq', default_opts)
 
 ------------------------------------------------------------------

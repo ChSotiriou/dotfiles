@@ -36,13 +36,14 @@ exec --no-startup-id xmodmap ~/.config/.Xmodmap
 
 # remote directories
 exec --no-startup-id sleep 10; insync start
-exec --no-startup-id rclone --vfs-cache-mode writes mount SharePoint-UoN-FS: /home/christoss/SharePoint-UoN-FS/
+exec --no-startup-id while true; do rclone --vfs-cache-mode writes mount SharePoint-UoN-FS: /home/christoss/SharePoint-UoN-FS/; done
 exec --no-startup-id nextcloud --background &
 
 # general utilities
 exec --no-startup-id flameshot
 exec --no-startup-id evolution
 exec --no-startup-id dunst
+exec --no-startup-id batsignal -b
 exec --no-startup-id udiskie --no-appindicator
 
 # Map touchscreen to correct screen
@@ -212,7 +213,7 @@ for_window [class="^.*"] border pixel 2
 # Start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-bindsym $alt+c exec --no-startup-id /usr/bin/firefox
+bindsym $alt+c exec --no-startup-id /usr/bin/chromium
 bindsym $alt+y exec --no-startup-id $TERMINAL -t "ipython3" -e "ipython3"
 bindsym $alt+l exec --no-startup-id betterlockscreen -l
 bindsym $alt+f exec --no-startup-id $HOME/.scripts/lfopen

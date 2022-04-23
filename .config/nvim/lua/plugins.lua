@@ -14,6 +14,7 @@ return require('packer').startup(function(use)
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/nvim-cmp'
     use 'quangnguyen30192/cmp-nvim-ultisnips'
+    use 'suoto/vim-hdl'
 
     use 'nvim-treesitter/nvim-treesitter'
     use 'nvim-treesitter/playground'
@@ -31,8 +32,9 @@ return require('packer').startup(function(use)
     use 'PotatoesMaster/i3-vim-syntax'
     use 'VebbNix/lf-vim'
 
-    use 'vim-pandoc'
     use 'vim-pandoc/vim-pandoc-syntax'
+    use 'dhruvasagar/vim-table-mode'
+    use 'lervag/vimtex'
 
     use 'tpope/vim-commentary'
     use 'tpope/vim-surround'
