@@ -1,3 +1,5 @@
 #!/bin/sh
 
-mpv --no-osc av://v4l2:$1 --profile=low-latency --untimed
+videoInput=$(find /dev/ -name 'video*' | sort | dmenu -i -p "Webcam")
+
+mpv --no-osc av://v4l2:"$videoInput" --profile=low-latency --untimed

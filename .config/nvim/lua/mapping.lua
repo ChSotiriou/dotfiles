@@ -44,7 +44,7 @@ vim.api.nvim_set_keymap('n', '<leader><F5>', ':!openOutput %<CR><CR>', default_o
 ------------------------------------------------------------------
 
 -- Vimsnippets
-vim.g.UltiSnipsExpandTrigger = "<tab>"
+-- vim.g.UltiSnipsExpandTrigger = ""
 vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
 vim.g.UltiSnipsJumpBackwardTrigger = "<S-tab>"
 

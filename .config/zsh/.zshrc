@@ -59,95 +59,6 @@ key[Down]="^[[B"
 
 # ------------------ Custom Config --------------------
 
-#editor
-alias v='nvim'
-alias vim='nvim'
-
-#list
-alias ls='exa --icons --long --header'
-
-alias la='ls -a'
-alias ll='ls -la'
-alias l='ls'
-alias lg='ls -la . | grep'
-alias l.="ls -a | egrep '^\.'"
-
-#change directory
-alias ..='cd ..'
-
-#safety stuff
-alias rm='rm -i'
-alias mv='mv -i'
-
-#fix obvious typo's
-alias cd..='cd ..'
-alias pdw="pwd"
-alias udpate='sudo pacman -Syyu'
-alias upate='sudo pacman -Syyu'
-alias updte='sudo pacman -Syyu'
-alias updqte='sudo pacman -Syyu'
-alias upqll="paru -Syu --noconfirm"
-alias upal="paru -Syu --noconfirm"
-
-# And He said: "Let there be color!"
-alias grep='grep --color'
-alias less='less -R'
-alias ip='ip --color'
-
-# du
-alias du='dust'
-
-#readable output
-alias df='df -h'
-
-#free
-alias free="free -mt"
-
-#continue download
-alias wget="wget -c"
-
-#userlist
-alias userlist="cut -d: -f1 /etc/passwd"
-
-# Aliases for software managment
-# pacman or pm
-alias pacman='sudo pacman --color auto'
-alias update='sudo pacman -Syyu'
-
-# paru as aur helper - updates everything
-alias pksyua="paru -Syu --noconfirm"
-alias upall="paru -Syu --noconfirm"
-
-#grub update
-alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
-
-#add new fonts
-alias update-fc='sudo fc-cache -fv'
-
-#check vulnerabilities microcode
-alias microcode='grep . /sys/devices/system/cpu/vulnerabilities/*'
-
-#get fastest mirrors in your neighborhood
-alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-alias mirrord="sudo reflector --latest 30 --number 10 --sort delay --save /etc/pacman.d/mirrorlist"
-alias mirrors="sudo reflector --latest 30 --number 10 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirrora="sudo reflector --latest 30 --number 10 --sort age --save /etc/pacman.d/mirrorlist"
-
-#our experimental - best option for the moment
-alias mirrorx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 5 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
-alias mirrorxx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 20 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
-alias ram='rate-mirrors --allow-root arch | sudo tee /etc/pacman.d/mirrorlist'
-
-#Recent Installed Packages
-alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
-alias riplong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | nl"
-
-#Cleanup orphaned packages
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
-
-#give the list of all installed desktops - xsessions desktops
-alias xd="ls /usr/share/xsessions"
-
 # # ex = EXtractor for all kinds of archives
 # # usage: ex <file>
 ex ()
@@ -175,61 +86,20 @@ ex ()
   fi
 }
 
-# opening common files
-alias pdf='okular'
-alias img='nsxiv -a'
-
-alias clip='xsel -b'
 
 # reporting tools - install when not installed
 neofetch
-#screenfetch
-#alsi
-#paleofetch
-#fetch
-#hfetch
-#sfetch
-#ufetch
-#ufetch-arco
-#pfetch
-#sysinfo
-#sysinfo-retro
-#cpufetch
-#colorscript random
 
 source ${HOME}/.config/zsh/docker_run_functions.sh
-
-alias dv='devour'
-
-# dotfile management
-alias conf='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
-alias sx='startx'
-
-# git aliases
-alias vs='git status'
-alias va='git add'
-alias vb='git branch'
-alias vm='git merge'
-alias vr='git restore'
-alias vc='git commit'
-alias vp='git push'
-alias vl='git log'
-
-# goto aliases
-alias gt='cd /tmp'
-alias gc='cd ~/.config'
-alias gu='cd ~/OneDrive-UoN/2021-2022'
-alias gn='cd ~/Nextcloud'
-alias gs='cd ~/SharePoint-UoN-FS/'
-alias gm='cd /run/media'
-
-alias cyber='cd ~/Nextcloud/Cybersecurity'
-
-alias fpga_env='source ~/Nextcloud/FPGA/fpga-tools/fpga_env'
+source ${HOME}/.config/zsh/alias.sh
 
 export HISTCONTROL=ignoreboth
 
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 source /usr/bin/virtualenvwrapper.sh
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"

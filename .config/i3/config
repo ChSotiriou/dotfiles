@@ -180,6 +180,9 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+# move workspace
+bindsym $mod+Shift+m move workspace to output next
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -203,19 +206,21 @@ client.background       #F8F8F2
 # set border
 gaps inner 5
 gaps outer 5
+smart_gaps on
 
 new_window pixel 1
-hide_edge_borders none
+hide_edge_borders smart
 
 for_window [class="^.*"] border pixel 2
-
 
 # Start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 bindsym $alt+c exec --no-startup-id /usr/bin/chromium
-bindsym $alt+y exec --no-startup-id $TERMINAL -t "ipython3" -e "ipython3"
+bindsym $alt+y exec --no-startup-id $TERMINAL -t "ipython" -e "ipython"
 bindsym $alt+l exec --no-startup-id betterlockscreen -l
+bindsym $alt+s exec --no-startup-id /usr/bin/spotify
+bindsym $alt+m exec --no-startup-id /usr/bin/evolution
 bindsym $alt+f exec --no-startup-id $HOME/.scripts/lfopen
 bindsym $alt+h exec --no-startup-id $TERMINAL -t "Processes" -e htop
 bindsym $alt+w exec --no-startup-id $HOME/.scripts/crossoverAppStart_dmenu
