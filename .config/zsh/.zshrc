@@ -9,6 +9,7 @@ eval "$(starship init zsh)"
 HISTSIZE=10000000
 SAVEHIST=10000000
 HISTFILE=~/.cache/zsh/history
+export HISTCONTROL=ignoreboth
 
 # Load zsh-syntax-highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
@@ -86,20 +87,11 @@ ex ()
   fi
 }
 
-
-# reporting tools - install when not installed
-neofetch
-
 source ${HOME}/.config/zsh/docker_run_functions.sh
 source ${HOME}/.config/zsh/alias.sh
+source ${HOME}/.config/zsh/extras/ataka.sh
+source ${HOME}/.config/zsh/extras/pythonenv.sh
 
-export HISTCONTROL=ignoreboth
+eval "$(mcfly init zsh)"
 
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-source /usr/bin/virtualenvwrapper.sh
-
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+neofetch

@@ -30,9 +30,9 @@ exec --no-startup-id sleep 1; autorandr --change && nitrogen --restore
 bindsym $alt+0 exec --no-startup-id $HOME/.scripts/toggleScreenOrientation
 
 # Mouse Pointer xcursor
-exec --no-startup-id xrdb $HOME/.Xresources
+exec --no-startup-id sleep 3; xrdb $HOME/.Xresources
 # keyboard
-exec --no-startup-id xmodmap ~/.config/.Xmodmap
+exec --no-startup-id sleep 3; xmodmap ~/.config/.Xmodmap
 
 # remote directories
 exec --no-startup-id sleep 10; insync start
