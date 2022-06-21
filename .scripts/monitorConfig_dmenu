@@ -5,10 +5,10 @@ defaults="""off
 common
 clone-largest
 vertical
-horizontal
-"""
+horizontal"""
+other="""custom"""
 
-option=$(echo -n "$profiles" "$defaults" | sort | sed "s/\s/\n/g" | dmenu -i -p "Monitor Configuration")
+option=$(echo -n "$profiles $defaults $other" | sort | sed "s/\s/\n/g" | dmenu -i -p "Monitor Configuration")
 
 [ -z "$option" ] && exit
 
@@ -18,4 +18,9 @@ if [[ $profiles == *"$option"*  ]]; then
 elif [[ $defaults == *"$option"*  ]]; then
     notify-send "Using $option"
     /usr/bin/autorandr $option
+elif [[ $other == *"$option"*  ]]; then
+    notify-send "Using $option"
+    case $option in
+        $(echo -n "$other" | cut -d$'\n' -f1)) /usr/bin/arandr ;; # custom
+    esac
 fi
