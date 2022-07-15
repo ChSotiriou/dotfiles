@@ -6,7 +6,8 @@ common
 clone-largest
 vertical
 horizontal"""
-other="""custom"""
+other="""custom
+backgroundReset"""
 
 option=$(echo -n "$profiles $defaults $other" | sort | sed "s/\s/\n/g" | dmenu -i -p "Monitor Configuration")
 
@@ -22,5 +23,6 @@ elif [[ $other == *"$option"*  ]]; then
     notify-send "Using $option"
     case $option in
         $(echo -n "$other" | cut -d$'\n' -f1)) /usr/bin/arandr ;; # custom
+        $(echo -n "$other" | cut -d$'\n' -f2)) /usr/bin/nitrogen --restore ;; # custom
     esac
 fi

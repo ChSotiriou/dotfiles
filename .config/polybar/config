@@ -1042,7 +1042,7 @@ label-volume = " "
 label-volume-foreground = #bd93f9
 label-muted = muted
 
-bar-volume-width = 10
+bar-volume-width = 16
 bar-volume-foreground-0 = #bd93f9
 bar-volume-foreground-1 = #bd93f9
 bar-volume-foreground-2 = #bd93f9
@@ -1052,7 +1052,7 @@ bar-volume-foreground-5 = #bd93f9
 bar-volume-foreground-6 = #bd93f9
 bar-volume-foreground-7 = #bd93f9
 bar-volume-gradient = false
-bar-volume-indicator = 
+bar-volume-indicator =
 bar-volume-indicator-font = 2
 bar-volume-fill = 
 bar-volume-fill-font = 2
@@ -1066,6 +1066,8 @@ format-muted-prefix-foreground = "#bd93f9"
 format-muted-foreground = ${colors.foreground}
 format-muted-background = ${colors.background}
 format-volume-underline = #bd93f9
+
+click-right = /usr/bin/pavucontrol
 
 ################################################################################
 

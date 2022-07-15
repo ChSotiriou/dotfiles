@@ -1,7 +1,7 @@
 # Inserts a blank line between shell prompts
 add_newline = false
 
-command_timeout = 3000
+# command_timeout = 3000
 
 format="$python$character$directory$git_branch$git_status"
 

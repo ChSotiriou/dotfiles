@@ -36,8 +36,8 @@ exec --no-startup-id sleep 3; xmodmap ~/.config/.Xmodmap
 
 # remote directories
 exec --no-startup-id sleep 10; insync start
-exec --no-startup-id while true; do rclone --vfs-cache-mode writes mount SharePoint-UoN-FS: /home/christoss/SharePoint-UoN-FS/; done
-exec --no-startup-id nextcloud --background &
+exec --no-startup-id while true; do rclone --vfs-cache-mode writes --file-perms 766 mount SharePoint-UoN-FS: /home/christoss/SharePoint-UoN-FS/ --allow-other; done
+exec --no-startup-id while true; do rclone --vfs-cache-mode writes --file-perms 766 mount NextCloud: /home/christoss/Nextcloud/ --allow-other; done
 
 # general utilities
 exec --no-startup-id flameshot
@@ -61,10 +61,10 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # Blueman Applet
-exec --no-startup-id blueman-applet
+exec --no-startup-id blueman-applet & dbus-update-activation-environment DISPLAY
 
 # Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec --no-startup-id [ $(getVolume) -ge 95 ] || pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id ([ $(getVolume) -ge 100 ] && pactl set-sink-volume @DEFAULT_SINK@ 105%) || pactl set-sink-volume @DEFAULT_SINK@ +2.5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
@@ -222,6 +222,7 @@ bindsym $alt+l exec --no-startup-id betterlockscreen -l
 bindsym $alt+s exec --no-startup-id /usr/bin/spotify
 bindsym $alt+m exec --no-startup-id /usr/bin/evolution
 bindsym $alt+f exec --no-startup-id $HOME/.scripts/lfopen
+bindsym $alt+Shift+f exec --no-startup-id /usr/bin/pcmanfm
 bindsym $alt+h exec --no-startup-id $TERMINAL -t "Processes" -e htop
 bindsym $alt+w exec --no-startup-id $HOME/.scripts/crossoverAppStart_dmenu
 bindsym $alt+v exec --no-startup-id $HOME/.scripts/vmopen_dmenu

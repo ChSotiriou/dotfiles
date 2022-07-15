@@ -6,10 +6,8 @@ OPTIONS=$(echo "$DATABASE" | awk -F '[ \t]*[|][ \t]*' '{print $1}')
 choise=$(echo "$OPTIONS" | dmenu -i -p "Windows Programs")
 
 if [ "$choise" ]; then
-    BOTTLE=$(echo "$DATABASE" | awk -F '[ \t]*[|][ \t]*' "/$choise/ {print \$2}")
-    EXE=$(echo "$DATABASE" | awk -F '[ \t]*[|][ \t]*' "/$choise/ {print \$3}")
-
-    echo "$BOTTLE" "$EXE"
+    BOTTLE=$(echo "$DATABASE" | awk -F '[ \t]*[|][ \t]*' "/^$choise\s/ {print \$2}")
+    EXE=$(echo "$DATABASE" | awk -F '[ \t]*[|][ \t]*' "/^$choise\s/ {print \$3}")
 
     $HOME/cxoffice/bin/wine --bottle "$BOTTLE" --cx-app "$EXE" &
 fi

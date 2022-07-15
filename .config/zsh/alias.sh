@@ -95,6 +95,7 @@ alias vb='git branch'
 alias vm='git merge'
 alias vr='git restore'
 alias vc='git commit'
+alias vcl='git clone'
 alias vp='git push'
 alias vl='git log'
 

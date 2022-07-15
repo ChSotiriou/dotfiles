@@ -6,3 +6,6 @@ Saturn PCB Toolkit          |General                |PCB Toolkit V8.06.exe
 Word                        |Microsoft_Office_365   |WINWORD.EXE
 Excel                       |Microsoft_Office_365   |EXCEL.EXE
 PowerPoint                  |Microsoft_Office_365   |POWERPNT.EXE
+# IDA Pro
+ida                         |IDAPro                 |ida.exe
+ida64                       |IDAPro                 |ida64.exe
