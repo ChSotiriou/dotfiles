@@ -38,7 +38,7 @@ vim.api.nvim_set_keymap('n', '<leader>db', ':call vimspector#ToggleBreakpoint()<
 ------------------------------------------------------------------
 
 -- Compile Commands
-vim.api.nvim_set_keymap('n', '<F5>', ':w! <bar> !compile %<CR><CR>', default_opts)
+vim.api.nvim_set_keymap('n', '<F5>', ':w! <bar> !compile % `pwd`<CR><CR>', default_opts)
 vim.api.nvim_set_keymap('n', '<leader><F5>', ':!openOutput %<CR><CR>', default_opts)
 
 ------------------------------------------------------------------

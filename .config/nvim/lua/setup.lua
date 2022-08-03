@@ -339,5 +339,6 @@ highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=und
 -- Vimtex
 
 vim.g.vimtex_mappings_enabled = 0
+vim.g.vimtex_syntax_enabled = 0
 
 -------------------------------------------------------------------------------

@@ -300,7 +300,7 @@ map ~ cd ~
 map gt cd /tmp
 map gc cd ~/.config
 map gu cd ~/OneDrive-UoN/2021-2022
-map gf cd "~/OneDrive-UoN/Formula Students/"
+map gf cd "~/OneDrive-UoN/Formula Student/"
 map gs cd "~/SharePoint-UoN-FS/"
 map gn cd "~/Nextcloud"
 map gd cd "~/Downloads/"

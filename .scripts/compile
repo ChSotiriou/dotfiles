@@ -3,6 +3,7 @@
 
 file=$(readlink -f "$1")
 dir=${file%/*}
+vimDir="$2"
 base="${file%.*}"
 ext="${file##*.}"
 
@@ -35,6 +36,15 @@ handlebang() {
     *) echo "Can't compile" ;;
   esac
 }
+
+hasMakeFile() {
+  /bin/ls "$vimDir" | grep -oP '^Makefile$'
+}
+
+if hasMakeFile; then
+    make
+    exit 0
+fi
 
 case "$1" in
     *.md) mdtype ;;

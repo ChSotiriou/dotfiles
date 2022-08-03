@@ -35,7 +35,7 @@ exec --no-startup-id sleep 3; xrdb $HOME/.Xresources
 exec --no-startup-id sleep 3; xmodmap ~/.config/.Xmodmap
 
 # remote directories
-exec --no-startup-id sleep 10; insync start
+exec --no-startup-id while true; do rclone --vfs-cache-mode writes --file-perms 766 mount Onedrive-UoN: /home/christoss/OneDrive-UoN/ --allow-other; done
 exec --no-startup-id while true; do rclone --vfs-cache-mode writes --file-perms 766 mount SharePoint-UoN-FS: /home/christoss/SharePoint-UoN-FS/ --allow-other; done
 exec --no-startup-id while true; do rclone --vfs-cache-mode writes --file-perms 766 mount NextCloud: /home/christoss/Nextcloud/ --allow-other; done
 
