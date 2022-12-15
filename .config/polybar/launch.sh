@@ -20,5 +20,5 @@ if type "xrandr" > /dev/null; then
         MONITOR=$m polybar --reload mainbar-i3 -c ~/.config/polybar/config &
     done
 else
-    polybar --reload mainbar-i3 -c ~/.config/polybar/config &
+    polybar --reload mainbar-i3 -c ~/.config/polybar/config 2>&1 | tee -a /tmp/polybar.log &
 fi

@@ -1,6 +1,7 @@
 # editor
 alias v='nvim'
 alias vim='nvim'
+alias e='nvim'
 
 # list
 alias ls='exa --icons --long --header'
@@ -8,7 +9,10 @@ alias la='ls -a'
 alias ll='ls -la'
 alias l='ls'
 alias lg='ls -la . | grep'
-alias l.="ls -a | egrep '^\.'"
+alias l.="ls -a | grep -E '^\.'"
+
+# chmod
+alias chmod='chmod -c'
 
 # change directory
 alias ..='cd ..'
@@ -26,6 +30,7 @@ alias updte='sudo pacman -Syyu'
 alias updqte='sudo pacman -Syyu'
 
 #  And He said: "Let there be color!"
+alias egrep='grep -E'
 alias grep='grep --color'
 alias less='less -R'
 alias ip='ip --color'
@@ -102,7 +107,7 @@ alias vl='git log'
 # goto aliases
 alias gt='cd /tmp'
 alias gc='cd ~/.config'
-alias gu='cd ~/OneDrive-UoN/2021-2022'
+alias gu='cd ~/OneDrive-UoN/2022-2023'
 alias gf='cd ~/OneDrive-UoN/Formula\ Student'
 alias gn='cd ~/Nextcloud'
 alias gs='cd ~/SharePoint-UoN-FS/'

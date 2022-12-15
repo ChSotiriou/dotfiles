@@ -1,5 +1,7 @@
 #!/bin/bash
 
+WALLPAPER=/home/christoss/Pictures/background/806282.jpg
+
 profiles=$(/bin/find $HOME/.config/autorandr/ -mindepth 1 -type d -printf "%f\n")
 defaults="""off
 common
@@ -9,7 +11,7 @@ horizontal"""
 other="""custom
 backgroundReset"""
 
-option=$(echo -n "$profiles $defaults $other" | sort | sed "s/\s/\n/g" | dmenu -i -p "Monitor Configuration")
+option=$(echo -n "$profiles $defaults $other" | sort | sed "s/\s/\n/g" | rofi -dmenu -i -p "Monitor Configuration")
 
 [ -z "$option" ] && exit
 
@@ -23,6 +25,6 @@ elif [[ $other == *"$option"*  ]]; then
     notify-send "Using $option"
     case $option in
         $(echo -n "$other" | cut -d$'\n' -f1)) /usr/bin/arandr ;; # custom
-        $(echo -n "$other" | cut -d$'\n' -f2)) /usr/bin/nitrogen --restore ;; # custom
+        $(echo -n "$other" | cut -d$'\n' -f2)) /usr/bin/nitrogen --restore && /usr/bin/betterlockscreen -u "$WALLPAPER" ;; # custom
     esac
 fi

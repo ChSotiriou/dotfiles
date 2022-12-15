@@ -27,11 +27,12 @@ return require('packer').startup(function(use)
     use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-fzy-native.nvim'
-    use 'junegunn/goyo.vim'
+
+    -- syntax
+    use 'dpelle/vim-languagetool'
     use 'PotatoesMaster/i3-vim-syntax'
     use 'kelwin/vim-smali'
     use 'VebbNix/lf-vim'
-
     use 'vim-pandoc/vim-pandoc-syntax'
     use 'dhruvasagar/vim-table-mode'
     use 'lervag/vimtex'
@@ -39,7 +40,6 @@ return require('packer').startup(function(use)
     use 'tpope/vim-commentary'
     use 'tpope/vim-surround'
     use 'jiangmiao/auto-pairs'
-    use 'voldikss/vim-floaterm'
 
     use 'ryanoasis/vim-devicons'
 
@@ -54,4 +54,6 @@ return require('packer').startup(function(use)
 
     use 'RRethy/vim-hexokinase'
     use 'airblade/vim-gitgutter'
+
+    use "akinsho/toggleterm.nvim"
 end)

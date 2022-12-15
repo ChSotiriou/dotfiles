@@ -31,12 +31,12 @@ compositing-border = over
 ; Define fallback values used by all module formats
 format-foreground = #f8f8f2
 format-background = #282a36
-format-underline =
-format-overline =
-format-spacing =
-format-padding =
-format-margin =
-format-offset =
+; format-underline =
+; format-overline =
+; format-spacing =
+; format-padding =
+; format-margin =
+; format-offset =
 
 [colors]
 ; Dracula theme ============

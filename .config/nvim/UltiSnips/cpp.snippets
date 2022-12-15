@@ -47,3 +47,15 @@ while (std::cin >> ${1:<input>}, std::cin.fail()$2) {
 
 $3
 endsnippet
+
+snippet omp_par_for "C++ OMP Parallel For Loop"
+#pragma omp parallel for default(shared) private($1) schedule(${2:[static|dynamic]})
+endsnippet
+
+snippet omp_par_section "C++ OMP Parallel Section"
+#pragma omp parallel default(shared)
+{
+	$1
+}
+endsnippet
+

@@ -1,4 +1,9 @@
 -------------------------------------------------------------------------------
+-- Specify python version
+
+vim.g.python3_host_prog = '/home/christoss/.local/share/pyenv/shims/python'
+
+-------------------------------------------------------------------------------
 
 -- Vim with default settings does not allow easy switching between multiple files
 -- in the same editor window. Users can use multiple split windows or multiple
@@ -41,11 +46,11 @@ vim.api.nvim_set_option('hlsearch', true)
 vim.cmd('autocmd InsertEnter * norm zz')
 
 -- Automatically deletes all trailing whitespace and newlines at end of file on save.
-vim.cmd([[
-    autocmd BufWritePre * %s/\s\+$//e
-    autocmd BufWritePre * %s/\n\+\%$//e
-    autocmd BufWritePre *.[ch] %s/\%$/\r/e
-]])
+-- vim.cmd([[
+--     autocmd BufWritePre * %s/\s\+$//e
+--     autocmd BufWritePre * %s/\n\+\%$//e
+--     autocmd BufWritePre *.[ch] %s/\%$/\r/e
+-- ]])
 
 -- Prevent VIM from erasing clipboard at exit
 vim.cmd([[
@@ -127,9 +132,10 @@ vim.api.nvim_set_option('splitbelow', true)
 -- Indentation settings for using 4 spaces instead of tabs.
 -- Do not change 'tabstop' from its default value of 8 with this setup.
 vim.cmd([[
-setlocal shiftwidth=4
-setlocal softtabstop=4
-setlocal expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
 ]])
 
 -------------------------------------------------------------------------------
@@ -185,7 +191,8 @@ require'cmp'.setup.cmdline(':', {
 })
 
 -- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 require('lspconfig')['clangd'].setup{ capabilities = capabilities }
 require('lspconfig')['cmake'].setup{ capabilities = capabilities }
 require('lspconfig')['dockerls'].setup{ capabilities = capabilities }
@@ -220,6 +227,26 @@ require('lspconfig')['sumneko_lua'].setup{
 }
 require'lspconfig'.rust_analyzer.setup{}
 require'lspconfig'.pyright.setup{}
+
+-------------------------------------------------------------------------------
+
+-- ToggleTerm
+
+require("toggleterm").setup({
+    open_mapping = [[<c-t>]]
+})
+
+function _G.set_terminal_keymaps()
+  local opts = {noremap = true}
+  vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
+end
+
+vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 -------------------------------------------------------------------------------
 
@@ -275,7 +302,7 @@ vim.cmd([[
 vim.g.neoformat_enabled_cpp = { 'clangformat' }
 vim.g.neoformat_enabled_c = { 'clangformat' }
 
-vim.cmd('autocmd BufWritePre *c,*.cpp,*.h,*.hpp Neoformat')
+-- vim.cmd('autocmd BufWritePre *c,*.cpp,*.h,*.hpp Neoformat')
 
 -- CMake
 vim.cmd([[
@@ -286,7 +313,7 @@ vim.cmd([[
 ]])
 vim.g.neoformat_enabled_cmake = { 'cmakeformat' }
 
-vim.cmd('autocmd BufWritePre CMakeLists.txt Neoformat')
+-- vim.cmd('autocmd BufWritePre CMakeLists.txt Neoformat')
 
 -------------------------------------------------------------------------------
 
@@ -340,5 +367,11 @@ highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=und
 
 vim.g.vimtex_mappings_enabled = 0
 vim.g.vimtex_syntax_enabled = 0
+
+-------------------------------------------------------------------------------
+
+-- LanguageTool
+
+vim.g.languagetool_jar = '/opt/LanguageTool/languagetool-commandline.jar'
 
 -------------------------------------------------------------------------------

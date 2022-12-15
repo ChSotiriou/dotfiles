@@ -1,2 +1,3 @@
 #!/bin/sh
-dmenu_path | dmenu "$@" | prime-run ${SHELL:-"/bin/sh"} &
+
+rofi -run-command "echo {cmd}" -show run | prime-run ${SHELL:-"/bin/sh"} &

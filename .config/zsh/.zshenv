@@ -7,7 +7,7 @@ export TERM="xterm-256color"
 export TERMINAL='alacritty'
 export MONITOR='eDP1'
 
-export PATH=$PATH:/home/christoss/.local/share/gem/ruby/3.0.0/bin:/home/christoss/.local/bin:/home/christoss/.scripts:/home/christoss/.cargo/bin:/home/christoss/.platformio/penv/bin
+export PATH=$PATH:/home/christoss/.local/share/gem/ruby/3.0.0/bin:/home/christoss/.local/bin:/home/christoss/.scripts:/home/christoss/.cargo/bin:/home/christoss/.platformio/penv/bin:/home/christoss/.steam/gameLaunchers
 
 export FPATH=$FPATH:$HOME/.zfunc
 

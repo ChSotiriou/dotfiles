@@ -44,7 +44,8 @@ exec --no-startup-id flameshot
 exec --no-startup-id evolution
 exec --no-startup-id dunst
 exec --no-startup-id batsignal -b
-exec --no-startup-id udiskie --no-appindicator
+exec --no-startup-id udiskie -s -f lf
+exec --no-startup-id fusuma -d
 
 # Map touchscreen to correct screen
 exec --no-startup-id sleep 5; xinput --map-to-output "Wacom HID 490A Finger" eDP1
@@ -62,6 +63,9 @@ exec --no-startup-id nm-applet
 
 # Blueman Applet
 exec --no-startup-id blueman-applet & dbus-update-activation-environment DISPLAY
+
+# polkit agend
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id ([ $(getVolume) -ge 100 ] && pactl set-sink-volume @DEFAULT_SINK@ 105%) || pactl set-sink-volume @DEFAULT_SINK@ +2.5%
@@ -85,7 +89,7 @@ bindsym $mod+Return exec --no-startup-id $TERMINAL
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $alt+space exec --no-startup-id dmenu_run -i
+bindsym $alt+space exec --no-startup-id $HOME/.scripts/rofi_run
 bindsym Control+$alt+space exec --no-startup-id dmenu_run_gpu -i
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
@@ -216,24 +220,28 @@ for_window [class="^.*"] border pixel 2
 # Start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
+bindsym $alt+Tab workspace next
+bindsym $alt+Shift+Tab workspace prev
 bindsym $alt+c exec --no-startup-id /usr/bin/chromium
 bindsym $alt+y exec --no-startup-id $TERMINAL -t "ipython" -e "ipython"
 bindsym $alt+l exec --no-startup-id betterlockscreen -l
 bindsym $alt+s exec --no-startup-id /usr/bin/spotify
 bindsym $alt+m exec --no-startup-id /usr/bin/evolution
 bindsym $alt+f exec --no-startup-id $HOME/.scripts/lfopen
-bindsym $alt+Shift+f exec --no-startup-id /usr/bin/pcmanfm
+bindsym Control+$alt+f exec --no-startup-id /usr/bin/thunar
 bindsym $alt+h exec --no-startup-id $TERMINAL -t "Processes" -e htop
 bindsym $alt+w exec --no-startup-id $HOME/.scripts/crossoverAppStart_dmenu
 bindsym $alt+v exec --no-startup-id $HOME/.scripts/vmopen_dmenu
 bindsym $alt+n exec --no-startup-id $HOME/.local/bin/notion
 bindsym $alt+p exec --no-startup-id $HOME/.scripts/monitorConfig_dmenu
-bindsym $alt+e exec --no-startup-id $HOME/.scripts/unicode_dmenu
+bindsym $alt+e exec --no-startup-id rofi -show emoji
 bindsym $alt+1 exec --no-startup-id $HOME/.scripts/switchLanguage
+bindsym $alt+u exec --no-startup-id /usr/local/bin/unipicker --copy
 bindsym Print exec --no-startup-id /usr/bin/flameshot gui
+bindsym Control+Print exec --no-startup-id /usr/bin/flameshot gui -d 5000
 bindsym --release $alt+z exec --no-startup-id $HOME/.scripts/cpcolor
 bindsym --release $mod+Shift+q exec --no-startup-id xkill
-bindsym Control+$alt+Shift+l exec --no-startup-id systemctl suspend
+bindsym Control+$alt+c exec --no-startup-id $BROWSER http://connectivitycheck.gstatic.com/
 bindsym Control+$alt+Shift+s exec --no-startup-id sudo shutdown now
 bindsym Control+$alt+Shift+r exec --no-startup-id sudo reboot
 bindsym Control+$alt+Shift+e exec --no-startup-id i3-msg exit

@@ -8,11 +8,11 @@ base="${file%.*}"
 ext="${file##*.}"
 
 textype() { \
-    command="pdflatex"
-    $command --shell-escape --output-directory="$dir" "$base"
-    TEXMFOUTPUT=$(dirname "$base") bibtex "$base"
-    $command --shell-escape --output-directory="$dir" "$base"
-    $command --shell-escape --output-directory="$dir" "$base"
+    command="pdflatex" && \\
+    $command --shell-escape --output-directory="$dir" "$base" && \\
+    TEXMFOUTPUT=$(dirname "$base") bibtex "$base" && \\
+    $command --shell-escape --output-directory="$dir" "$base" 
+    # $command --shell-escape --output-directory="$dir" "$base"
 }
 
 mdtype() { \

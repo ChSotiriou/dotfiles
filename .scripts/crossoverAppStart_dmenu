@@ -3,7 +3,7 @@
 DATABASE=$(sed 's/\s*#.*//g; /^$/d' $HOME/.local/share/scripts/windowsPrograms | sort)
 OPTIONS=$(echo "$DATABASE" | awk -F '[ \t]*[|][ \t]*' '{print $1}')
 
-choise=$(echo "$OPTIONS" | dmenu -i -p "Windows Programs")
+choise=$(echo "$OPTIONS" | rofi -dmenu -i -p "Windows Programs")
 
 if [ "$choise" ]; then
     BOTTLE=$(echo "$DATABASE" | awk -F '[ \t]*[|][ \t]*' "/^$choise\s/ {print \$2}")
