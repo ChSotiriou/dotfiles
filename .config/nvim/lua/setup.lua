@@ -135,12 +135,16 @@ vim.cmd([[
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+set shiftround
 set expandtab
 ]])
 
 -------------------------------------------------------------------------------
 
 -- language server | autocomplete | lsp
+require("mason").setup()
+require("mason-lspconfig").setup()
+
 vim.api.nvim_set_option('completeopt', 'menu,menuone,noselect')
 -- Setup nvim-cmp.
 local cmp = require'cmp'
@@ -247,6 +251,11 @@ function _G.set_terminal_keymaps()
 end
 
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+
+-------------------------------------------------------------------------------
+
+-- TeleMake
+require("telescope").load_extension("telemake")
 
 -------------------------------------------------------------------------------
 
@@ -375,3 +384,16 @@ vim.g.vimtex_syntax_enabled = 0
 vim.g.languagetool_jar = '/opt/LanguageTool/languagetool-commandline.jar'
 
 -------------------------------------------------------------------------------
+
+-- Debugging
+-- Adapters
+-- LLVM (Low Level Virtual Machine)
+require'dap'.adapters.cppdbg = {
+  type = 'executable',
+  command = '/usr/bin/lldb-vscode', -- adjust as needed, must be absolute path
+  name = 'lldb'
+}
+
+require('dap.ext.vscode').load_launchjs(nil, {cppdbg = {'c', 'h'} })
+require("dapui").setup()
+require("nvim-dap-virtual-text").setup()

@@ -4,8 +4,11 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
+    -- LSP
+    use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
     use 'neovim/nvim-lspconfig'
-    use 'sbdchd/neoformat'
+    use 'jose-elias-alvarez/null-ls.nvim'
 
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-nvim-lua'
@@ -21,12 +24,16 @@ return require('packer').startup(function(use)
     use 'cdelledonne/vim-cmake'
 
     -- Debugger
-    use 'puremourning/vimspector'
+    use 'mfussenegger/nvim-dap'
+    use 'nvim-telescope/telescope-dap.nvim'
+    use 'theHamsta/nvim-dap-virtual-text'
+    use 'rcarriga/nvim-dap-ui'
 
     -- telescope
     use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-fzy-native.nvim'
+    use 'ChSotiriou/nvim-telemake'
 
     -- syntax
     use 'dpelle/vim-languagetool'

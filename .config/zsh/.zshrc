@@ -37,6 +37,10 @@ function chpwd() {
 }
 
 # ------------------ Keybindings   --------------------
+
+# disable flow control keybindings
+stty -ixon
+
 bindkey -e
 
 typeset -A key

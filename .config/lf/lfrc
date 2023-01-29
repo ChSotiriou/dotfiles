@@ -27,7 +27,7 @@ cmd open ${{
 cmd openNewWindow ${{
     case $(xdg-mime query filetype $f) in
         text/*|application/json) $EDITOR "$f";;
-        *) xdg-open "$f" & ;;
+        *) xdg-open "$f" &> /dev/null & ;;
     esac
 
     lf -remote "send $id reload"
@@ -64,6 +64,11 @@ cmd vimv ${{
 
 cmd copy_cwd &{{
    pwd | tr -d '\n' | xsel -b
+}}
+
+cmd cd_clip &{{
+    new_path="$(xsel -b)"
+    lf -remote "send $id cd \"$new_path\""
 }}
 
 cmd fzf_jump ${{
@@ -276,6 +281,7 @@ map p paste
 map x cut
 map y copy
 map Y copy_cwd
+map P cd_clip
 map <enter> open
 map op openNewWindow
 map mf mkfile

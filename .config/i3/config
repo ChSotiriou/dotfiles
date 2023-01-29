@@ -19,7 +19,7 @@ set $TERMINAL alacritty
 font pango:"Source Code Pro" 12
 
 # transparency
-exec --no-startup-id prime-run picom -b --config $HOME/.config/picom/picom.conf --experimental-backends
+exec --no-startup-id picom -b --config $HOME/.config/picom/picom.conf --experimental-backends
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -37,7 +37,7 @@ exec --no-startup-id sleep 3; xmodmap ~/.config/.Xmodmap
 # remote directories
 exec --no-startup-id while true; do rclone --vfs-cache-mode writes --file-perms 766 mount Onedrive-UoN: /home/christoss/OneDrive-UoN/ --allow-other; done
 exec --no-startup-id while true; do rclone --vfs-cache-mode writes --file-perms 766 mount SharePoint-UoN-FS: /home/christoss/SharePoint-UoN-FS/ --allow-other; done
-exec --no-startup-id while true; do rclone --vfs-cache-mode writes --file-perms 766 mount NextCloud: /home/christoss/Nextcloud/ --allow-other; done
+exec --no-startup-id while true; do rclone --vfs-cache-mode writes --file-perms 766 mount NextCloud: /home/christoss/Nextcloud/ --allow-other --links; done
 
 # general utilities
 exec --no-startup-id flameshot
@@ -222,7 +222,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 bindsym $alt+Tab workspace next
 bindsym $alt+Shift+Tab workspace prev
-bindsym $alt+c exec --no-startup-id /usr/bin/chromium
+bindsym $alt+c exec --no-startup-id brave
 bindsym $alt+y exec --no-startup-id $TERMINAL -t "ipython" -e "ipython"
 bindsym $alt+l exec --no-startup-id betterlockscreen -l
 bindsym $alt+s exec --no-startup-id /usr/bin/spotify

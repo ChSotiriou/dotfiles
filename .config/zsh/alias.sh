@@ -118,3 +118,5 @@ alias gm='cd /run/media'
 alias fpga_env='source ~/Nextcloud/FPGA/fpga-tools/fpga_env'
 
 alias timezoneUpdate='sudo tzupdate'
+
+alias repl-rs=evcxr
