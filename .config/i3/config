@@ -12,14 +12,15 @@
 set $mod Mod4
 set $alt Mod1
 
-set $TERMINAL alacritty
+set $TERMINAL LIBGL_ALWAYS_SOFTWARE=1 alacritty
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:"Source Code Pro" 12
 
 # transparency
-exec --no-startup-id picom -b --config $HOME/.config/picom/picom.conf --experimental-backends
+# exec --no-startup-id picom -b --config $HOME/.config/picom/picom.conf --experimental-backends
+exec --no-startup-id picom 
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -46,6 +47,7 @@ exec --no-startup-id dunst
 exec --no-startup-id batsignal -b
 exec --no-startup-id udiskie -s -f lf
 exec --no-startup-id fusuma -d
+exec --no-startup-id optimus-manager-qt
 
 # Map touchscreen to correct screen
 exec --no-startup-id sleep 5; xinput --map-to-output "Wacom HID 490A Finger" eDP1

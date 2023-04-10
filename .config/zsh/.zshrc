@@ -97,6 +97,7 @@ source ${HOME}/.config/zsh/alias.sh
 source ${HOME}/.config/zsh/extras/ataka.sh
 source ${HOME}/.config/zsh/extras/pythonenv.sh
 
+# eval "$(/home/christoss/.cargo/bin/rtx activate zsh)"
 eval "$(mcfly init zsh)"
 
 # neofetch

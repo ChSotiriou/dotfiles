@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WALLPAPER=/home/christoss/Pictures/background/806282.jpg
+WALLPAPER=/home/christoss/Pictures/background/mouflons.jpg
 
 profiles=$(/bin/find $HOME/.config/autorandr/ -mindepth 1 -type d -printf "%f\n")
 defaults="""off

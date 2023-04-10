@@ -118,7 +118,7 @@ vim.wo.relativenumber = true
 vim.cmd('set notimeout ttimeout ttimeoutlen=200')
 
 -- Use <F11> to toggle between 'paste' and 'nopaste'
-vim.api.nvim_set_option('pastetoggle', '<F11>')
+-- vim.api.nvim_set_option('pastetoggle', '<F11>')
 
 -- Use intuitive split location
 vim.api.nvim_set_option('splitright', true)
@@ -205,7 +205,7 @@ require('lspconfig')['texlab'].setup{
     capabilities = capabilities,
     filetypes = { 'tex', 'bib', 'md' }
 }
-require('lspconfig')['sumneko_lua'].setup{
+require('lspconfig')['lua_ls'].setup{
     settings = {
         Lua = {
             runtime = {

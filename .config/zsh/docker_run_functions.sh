@@ -33,3 +33,11 @@ function volatility() {
         docker run -it --rm -v `pwd`:/data --name "volatility" --entrypoint sh blacktop/volatility:plugins
     fi
 }
+
+function aflplusplus() {
+    if [ $(checkContainerRunning "aflplusplus") ]; then
+        docker exec -it aflplusplus bash
+    else
+        docker run -it --rm -v `pwd`:/data --name "aflplusplus" --entrypoint bash aflplusplus/aflplusplus
+    fi
+}

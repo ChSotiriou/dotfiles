@@ -262,6 +262,7 @@ map f fzf_jump
 map c fzf_config
 
 map ee $$EDITOR "$f"
+map ei &devour gimp "$f" # edit image
 map ex extract
 
 # dragon
@@ -297,6 +298,7 @@ map U unselect
 map <c-a> glob-select *
 map i invert
 map t &devour alacritty
+map oi &devour nsxiv .
 
 # git commands
 map vs git-status
