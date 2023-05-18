@@ -120,3 +120,5 @@ alias fpga_env='source ~/Nextcloud/FPGA/fpga-tools/fpga_env'
 alias timezoneUpdate='sudo tzupdate'
 
 alias repl-rs=evcxr
+
+alias myth='docker run --rm -v `pwd`:/data mythril/myth'

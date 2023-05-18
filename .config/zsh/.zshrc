@@ -101,3 +101,9 @@ source ${HOME}/.config/zsh/extras/pythonenv.sh
 eval "$(mcfly init zsh)"
 
 # neofetch
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/christoss/Documents/fromSource/google-cloud-cli/google-cloud-sdk/path.zsh.inc' ]; then . '/home/christoss/Documents/fromSource/google-cloud-cli/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/christoss/Documents/fromSource/google-cloud-cli/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/christoss/Documents/fromSource/google-cloud-cli/google-cloud-sdk/completion.zsh.inc'; fi

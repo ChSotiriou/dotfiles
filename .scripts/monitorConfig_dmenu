@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WALLPAPER=/home/christoss/Pictures/background/mouflons.jpg
+WALLPAPER=/home/christoss/Pictures/background/LM556-2.jpg
 
 profiles=$(/bin/find $HOME/.config/autorandr/ -mindepth 1 -type d -printf "%f\n")
 defaults="""off
@@ -25,6 +25,6 @@ elif [[ $other == *"$option"*  ]]; then
     notify-send "Using $option"
     case $option in
         $(echo -n "$other" | cut -d$'\n' -f1)) /usr/bin/arandr ;; # custom
-        $(echo -n "$other" | cut -d$'\n' -f2)) /usr/bin/nitrogen --restore && /usr/bin/betterlockscreen -u "$WALLPAPER" ;; # custom
+        $(echo -n "$other" | cut -d$'\n' -f2)) /usr/bin/nitrogen --restore; /usr/bin/betterlockscreen -u "$WALLPAPER" ;; # custom
     esac
 fi

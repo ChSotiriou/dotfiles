@@ -38,6 +38,6 @@ function aflplusplus() {
     if [ $(checkContainerRunning "aflplusplus") ]; then
         docker exec -it aflplusplus bash
     else
-        docker run -it --rm -v `pwd`:/data --name "aflplusplus" --entrypoint bash aflplusplus/aflplusplus
+        docker run -it -w /data --rm -v `pwd`:/data --name "aflplusplus" --entrypoint bash aflplusplus/aflplusplus
     fi
 }

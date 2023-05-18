@@ -38,13 +38,13 @@ exec --no-startup-id sleep 3; xmodmap ~/.config/.Xmodmap
 # remote directories
 exec --no-startup-id while true; do rclone --vfs-cache-mode writes --file-perms 766 mount Onedrive-UoN: /home/christoss/OneDrive-UoN/ --allow-other; done
 exec --no-startup-id while true; do rclone --vfs-cache-mode writes --file-perms 766 mount SharePoint-UoN-FS: /home/christoss/SharePoint-UoN-FS/ --allow-other; done
-exec --no-startup-id while true; do rclone --vfs-cache-mode writes --file-perms 766 mount NextCloud: /home/christoss/Nextcloud/ --allow-other --links; done
+exec --no-startup-id while true; do rclone --max-depth 0 --vfs-cache-mode writes --file-perms 766 mount NextCloud: /home/christoss/Nextcloud/ --allow-other --links; done
 
 # general utilities
 exec --no-startup-id flameshot
 exec --no-startup-id evolution
 exec --no-startup-id dunst
-exec --no-startup-id batsignal -b
+exec --no-startup-id batsignal -w 20 -c 10 -n BAT0
 exec --no-startup-id udiskie -s -f lf
 exec --no-startup-id fusuma -d
 exec --no-startup-id optimus-manager-qt
@@ -227,6 +227,7 @@ bindsym $alt+Shift+Tab workspace prev
 bindsym $alt+c exec --no-startup-id brave
 bindsym $alt+y exec --no-startup-id $TERMINAL -t "ipython" -e "ipython"
 bindsym $alt+l exec --no-startup-id betterlockscreen -l
+bindsym $alt+r exec --no-startup-id ~/.scripts/random_dmenu
 bindsym $alt+s exec --no-startup-id /usr/bin/spotify
 bindsym $alt+m exec --no-startup-id /usr/bin/evolution
 bindsym $alt+f exec --no-startup-id $HOME/.scripts/lfopen
@@ -234,11 +235,11 @@ bindsym Control+$alt+f exec --no-startup-id /usr/bin/thunar
 bindsym $alt+h exec --no-startup-id $TERMINAL -t "Processes" -e htop
 bindsym $alt+w exec --no-startup-id $HOME/.scripts/crossoverAppStart_dmenu
 bindsym $alt+v exec --no-startup-id $HOME/.scripts/vmopen_dmenu
-bindsym $alt+n exec --no-startup-id $HOME/.local/bin/notion
 bindsym $alt+p exec --no-startup-id $HOME/.scripts/monitorConfig_dmenu
 bindsym $alt+e exec --no-startup-id rofi -show emoji
 bindsym $alt+1 exec --no-startup-id $HOME/.scripts/switchLanguage
 bindsym $alt+u exec --no-startup-id /usr/local/bin/unipicker --copy
+bindsym $alt+Shift+m exec --no-startup-id /usr/bin/ferdium
 bindsym Print exec --no-startup-id /usr/bin/flameshot gui
 bindsym Control+Print exec --no-startup-id /usr/bin/flameshot gui -d 5000
 bindsym --release $alt+z exec --no-startup-id $HOME/.scripts/cpcolor
@@ -247,3 +248,7 @@ bindsym Control+$alt+c exec --no-startup-id $BROWSER http://connectivitycheck.gs
 bindsym Control+$alt+Shift+s exec --no-startup-id sudo shutdown now
 bindsym Control+$alt+Shift+r exec --no-startup-id sudo reboot
 bindsym Control+$alt+Shift+e exec --no-startup-id i3-msg exit
+
+# fix my broken keyboard :(
+bindsym --release Control+1 exec --no-startup-id xdotool key quoteleft
+bindsym --release Control+Shift+1 exec --no-startup-id xdotool key asciitilde
