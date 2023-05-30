@@ -52,11 +52,6 @@ vim.cmd('autocmd InsertEnter * norm zz')
 --     autocmd BufWritePre *.[ch] %s/\%$/\r/e
 -- ]])
 
--- Prevent VIM from erasing clipboard at exit
-vim.cmd([[
-    autocmd VimLeave * call system("xsel -ib", getreg('+'))
-]])
-
 vim.api.nvim_set_option('backup', false)
 
 -------------------------------------------------------------------------------
@@ -143,6 +138,7 @@ set expandtab
 
 -- language server | autocomplete | lsp
 require("mason").setup()
+
 require("mason-lspconfig").setup()
 
 vim.api.nvim_set_option('completeopt', 'menu,menuone,noselect')
@@ -195,8 +191,9 @@ require'cmp'.setup.cmdline(':', {
 })
 
 -- Setup lspconfig.
+local capabilities = vim.lsp.protocol.make_client_capabilities();
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
 require('lspconfig')['clangd'].setup{ capabilities = capabilities }
 require('lspconfig')['cmake'].setup{ capabilities = capabilities }
 require('lspconfig')['dockerls'].setup{ capabilities = capabilities }
@@ -234,6 +231,24 @@ require'lspconfig'.pyright.setup{}
 
 -------------------------------------------------------------------------------
 
+-- null-ls
+local null_ls = require("null-ls")
+null_ls.setup({
+    sources = {
+        null_ls.builtins.formatting.black.with({ extra_args = { "--fast" } }),
+        null_ls.builtins.formatting.clang_format.with({
+            extra_args = { "--style", "{IndentWidth: 4}" },
+            extra_filetypes = { 'h', 'hpp' }
+        }),
+        null_ls.builtins.diagnostics.clang_check,
+        null_ls.builtins.diagnostics.eslint,
+        null_ls.builtins.diagnostics.flake8,
+        null_ls.builtins.completion.spell,
+    },
+})
+
+
+
 -- ToggleTerm
 
 require("toggleterm").setup({
@@ -256,6 +271,26 @@ vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 -- TeleMake
 require("telescope").load_extension("telemake")
+
+-------------------------------------------------------------------------------
+
+-- Vim-Oil
+require("oil").setup({
+    view_options = {
+    -- Show files and directories that start with "."
+    show_hidden = true,
+  },
+  keymaps = {
+    ["<CR>"] = "actions.select",
+    ["-"] = "actions.parent",
+    ["_"] = "actions.open_cwd",
+    ["`"] = "actions.cd",
+    ["~"] = "actions.tcd",
+    ["g."] = "actions.toggle_hidden",
+  },
+  use_default_keymaps = false
+})
+vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
 
 -------------------------------------------------------------------------------
 
@@ -296,33 +331,6 @@ require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 vim.g.cmake_build_dir_location = 'build'
 vim.g.cmake_default_config = ''
 vim.g.cmake_root_markers = { 'build' }
-
--------------------------------------------------------------------------------
-
--- Neoformat
-
--- C/C++
-vim.cmd([[
-    let g:neoformat_cpp_clangformat = {
-    \    'exe': 'clang-format',
-    \    'args': ['--style="{IndentWidth: 4}"']
-    \}
-]])
-vim.g.neoformat_enabled_cpp = { 'clangformat' }
-vim.g.neoformat_enabled_c = { 'clangformat' }
-
--- vim.cmd('autocmd BufWritePre *c,*.cpp,*.h,*.hpp Neoformat')
-
--- CMake
-vim.cmd([[
-    let g:neoformat_cmake_cmakeformat = {
-    \    'exe': 'cmake-format',
-    \    'args': ['--tab-size 4']
-    \}
-]])
-vim.g.neoformat_enabled_cmake = { 'cmakeformat' }
-
--- vim.cmd('autocmd BufWritePre CMakeLists.txt Neoformat')
 
 -------------------------------------------------------------------------------
 

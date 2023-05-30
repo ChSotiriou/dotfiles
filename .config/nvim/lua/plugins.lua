@@ -29,11 +29,13 @@ return require('packer').startup(function(use)
     use 'theHamsta/nvim-dap-virtual-text'
     use 'rcarriga/nvim-dap-ui'
 
-    -- telescope
+    -- navigation
     use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-fzy-native.nvim'
     use 'ChSotiriou/nvim-telemake'
+
+    use 'stevearc/oil.nvim'
 
     -- syntax
     use 'dpelle/vim-languagetool'
@@ -63,4 +65,6 @@ return require('packer').startup(function(use)
     use 'airblade/vim-gitgutter'
 
     use "akinsho/toggleterm.nvim"
+
+    use "christoomey/vim-tmux-navigator"
 end)
