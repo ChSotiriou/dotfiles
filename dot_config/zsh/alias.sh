@@ -116,7 +116,4 @@ alias fpga_env='source ~/Nextcloud/FPGA/fpga-tools/fpga_env'
 
 alias timezoneUpdate='sudo tzupdate'
 
-alias docker-kill-all='sudo docker ps -q | xargs sudo docker kill'
-# alias docker-stop-rm-all='sudo docker ps -q | xargs -d $\'\n\' sh -c \'for arg do sudo docker stop "$arg"; sudo docker rm "$arg"; done\' _'
-
 alias myth='sudo docker run --rm -v `pwd`:/data mythril/myth'

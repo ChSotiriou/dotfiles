@@ -50,3 +50,11 @@ function mobileSecurityToolkit() {
     fi
 
 }
+
+function docker-stop-rm-all() {
+    sudo docker ps -q | 
+        xargs -d $'\n' sh -c 'for arg do sudo docker kill "$arg"; sudo docker rm "$arg"; done' _
+}
+
+alias docker-kill-all='sudo docker ps -q | xargs sudo docker kill'
+
