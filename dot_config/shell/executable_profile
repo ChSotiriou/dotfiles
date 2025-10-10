@@ -1,0 +1,33 @@
+#!/usr/bin/zsh
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+export SSB_HOME="$XDG_DATA_HOME"/zoom
+export ANDROID_HOME="$XDG_DATA_HOME"/android
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export GDBHISTFILE="$XDG_CONFIG_HOME"/gdb/.gdb_history
+export SCREENRC="$XDG_CONFIG_HOME"/screen/screenrc
+export GOPATH="$XDG_DATA_HOME"/go
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export IPYTHONDIR="${XDG_CONFIG_HOME}/ipython"
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
+export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
+export DOT_SAGE="$XDG_CONFIG_HOME"/sage
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export ANDROID_HOME="$XDG_DATA_HOME"/android
+export PYENV_ROOT="$XDG_DATA_HOME"/pyenv
+export SQLITE_HISTORY="$XDG_CACHE_HOME"/sqlite_history
+export STACK_ROOT="$XDG_DATA_HOME"/stack
+export WORKON_HOME="$XDG_DATA_HOME/virtualenvs"
+export WINEPREFIX="$XDG_DATA_HOME"/wine
+
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/.zshenv"
+
+if [[ "$(tty)" == "/dev/tty1" ]]
+then
+    Hyprland
+fi

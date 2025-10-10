@@ -1,0 +1,61 @@
+snippet c63 "Simple Class Template EEEE2063"
+
+class $1;
+
+class $1 {
+
+public:
+
+
+    $1($2);   /* Default Constructor */
+    $1($1 &_$1);    /* Copy Constructor */
+    ~$1();  /* Default Destructor */
+    $1& operator=(const $1 &_$1);
+
+private:
+    $3
+};
+
+$1::$1($2) {
+
+}
+
+$1::$1($1 &_$1) {
+
+}
+
+$1::~$1() {}
+
+$1& $1::operator=(const $1 &_$1) {
+    if (this == &_$1) {return *this;}
+
+
+
+    return *this;
+}
+
+endsnippet
+
+
+snippet usrInput "Get Input"
+while (std::cin >> ${1:<input>}, std::cin.fail()$2) {
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    std::cout<<"\nIllegal value\n";
+}
+
+$3
+endsnippet
+
+snippet omp_par_for "C++ OMP Parallel For Loop"
+#pragma omp parallel for default(shared) private($1) schedule(${2:[static|dynamic]})
+endsnippet
+
+snippet omp_par_section "C++ OMP Parallel Section"
+#pragma omp parallel default(shared)
+{
+	$1
+}
+endsnippet
+
