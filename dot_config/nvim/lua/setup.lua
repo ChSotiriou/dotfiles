@@ -137,8 +137,8 @@ set expandtab
 -------------------------------------------------------------------------------
 
 -- language server | autocomplete | lsp
+vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
 require("mason").setup()
-
 require("mason-lspconfig").setup()
 
 vim.api.nvim_set_option('completeopt', 'menu,menuone,noselect')
@@ -194,15 +194,15 @@ require 'cmp'.setup.cmdline(':', {
 local capabilities = vim.lsp.protocol.make_client_capabilities();
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-require('lspconfig')['clangd'].setup { capabilities = capabilities }
-require('lspconfig')['cmake'].setup { capabilities = capabilities }
-require('lspconfig')['dockerls'].setup { capabilities = capabilities }
-require('lspconfig')['vimls'].setup { capabilities = capabilities }
-require('lspconfig')['texlab'].setup {
+vim.lsp.config('clangd', { capabilities = capabilities })
+vim.lsp.config('cmake', { capabilities = capabilities })
+vim.lsp.config('dockerls', { capabilities = capabilities })
+vim.lsp.config('vimls', { capabilities = capabilities })
+vim.lsp.config('texlab', {
     capabilities = capabilities,
     filetypes = { 'tex', 'bib', 'md' }
-}
-require('lspconfig')['lua_ls'].setup {
+})
+vim.lsp.config('lua_ls', {
     settings = {
         Lua = {
             runtime = {
@@ -225,10 +225,10 @@ require('lspconfig')['lua_ls'].setup {
         },
     },
     capabilities = capabilities
-}
-require 'lspconfig'.rust_analyzer.setup {}
-require 'lspconfig'.pyright.setup {}
-require 'lspconfig'.gopls.setup({
+})
+require('lspconfig').rust_analyzer.setup {}
+require('lspconfig').pyright.setup {}
+require('lspconfig').gopls.setup({
     settings = {
         gopls = {
             analyses = {
@@ -240,6 +240,10 @@ require 'lspconfig'.gopls.setup({
     },
 })
 
+-- vim.lsp.config('htmlbeautifier')
+vim.lsp.enable('htmlbeautifier')
+
+
 -------------------------------------------------------------------------------
 
 -- neogit
@@ -247,10 +251,14 @@ require('neogit').setup({})
 
 -- null-ls
 local null_ls = require("null-ls")
-null_ls.setup({{
+null_ls.setup({
+    sources = {
         null_ls.builtins.formatting.clang_format.with({
             extra_args = { "--style", "{IndentWidth: 4}" },
-            extra_filetypes = { 'h', 'hpp' }
+            extra_filetypes = { "h", "hpp" },
+        }),
+        null_ls.builtins.formatting.htmlbeautifier.with({
+            filetypes = { "html", "eruby", "htm" },
         }),
         null_ls.builtins.diagnostics.clang_check,
         null_ls.builtins.diagnostics.eslint,
@@ -258,7 +266,6 @@ null_ls.setup({{
         null_ls.builtins.completion.spell,
     },
 })
-
 
 
 -- ToggleTerm

@@ -20,7 +20,8 @@ local plugins = {
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
-    'jose-elias-alvarez/null-ls.nvim',
+    -- 'jose-elias-alvarez/null-ls.nvim',
+    'nvimtools/none-ls.nvim',
 
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-nvim-lua',
