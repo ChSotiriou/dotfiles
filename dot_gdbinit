@@ -1,1 +1,10 @@
-# source ~/.gef-2024.06.py
+set debuginfod enabled on
+set step-mode on
+
+define init-gef
+    source ~/.gef-2024.06.py
+end
+
+define init-pwndbg
+    source /usr/share/pwndbg/gdbinit.py
+end
