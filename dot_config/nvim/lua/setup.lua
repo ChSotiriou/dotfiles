@@ -54,6 +54,10 @@ vim.cmd('autocmd InsertEnter * norm zz')
 
 vim.api.nvim_set_option('backup', false)
 
+
+vim.o.cursorline = true
+vim.o.cursorcolumn = true
+
 -------------------------------------------------------------------------------
 
 -- Usability options
