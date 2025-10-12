@@ -244,10 +244,6 @@ require('lspconfig').gopls.setup({
     },
 })
 
--- vim.lsp.config('htmlbeautifier')
-vim.lsp.enable('htmlbeautifier')
-
-
 -------------------------------------------------------------------------------
 
 -- neogit
@@ -263,10 +259,11 @@ null_ls.setup({
         }),
         null_ls.builtins.formatting.htmlbeautifier.with({
             filetypes = { "html", "eruby", "htm" },
+            extra_args = { "--keep-blank-lines", "1" },
         }),
-        null_ls.builtins.diagnostics.clang_check,
-        null_ls.builtins.diagnostics.eslint,
-        null_ls.builtins.diagnostics.flake8,
+        -- null_ls.builtins.diagnostics.clang_check,
+        -- null_ls.builtins.diagnostics.eslint,
+        -- null_ls.builtins.diagnostics.flake8,
         null_ls.builtins.completion.spell,
     },
 })
