@@ -198,14 +198,14 @@ require 'cmp'.setup.cmdline(':', {
 local capabilities = vim.lsp.protocol.make_client_capabilities();
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-vim.lsp.config('clangd', { capabilities = capabilities })
-vim.lsp.config('cmake', { capabilities = capabilities })
-vim.lsp.config('dockerls', { capabilities = capabilities })
-vim.lsp.config('vimls', { capabilities = capabilities })
+vim.lsp.config('clangd', { capabilities = capabilities }); vim.lsp.enable('clangd')
+vim.lsp.config('cmake', { capabilities = capabilities }); vim.lsp.enable('cmake')
+vim.lsp.config('dockerls', { capabilities = capabilities }); vim.lsp.enable('dockerls')
+vim.lsp.config('vimls', { capabilities = capabilities }); vim.lsp.enable('vimls')
 vim.lsp.config('texlab', {
     capabilities = capabilities,
     filetypes = { 'tex', 'bib', 'md' }
-})
+}); vim.lsp.enable('texlab')
 vim.lsp.config('lua_ls', {
     settings = {
         Lua = {
@@ -229,10 +229,10 @@ vim.lsp.config('lua_ls', {
         },
     },
     capabilities = capabilities
-})
-require('lspconfig').rust_analyzer.setup {}
-require('lspconfig').pyright.setup {}
-require('lspconfig').gopls.setup({
+}); vim.lsp.enable('lua_ls')
+vim.lsp.config('rust_analyzer', {}); vim.lsp.enable('rust_analyzer')
+vim.lsp.config('pyright', { capabilities = capabilities }); vim.lsp.enable('pyright')
+vim.lsp.config('gopls', {
     settings = {
         gopls = {
             analyses = {
@@ -242,7 +242,7 @@ require('lspconfig').gopls.setup({
             gofumpt = true,
         },
     },
-})
+}); vim.lsp.enable('gopls')
 
 -------------------------------------------------------------------------------
 
@@ -263,7 +263,7 @@ null_ls.setup({
         }),
         -- null_ls.builtins.diagnostics.clang_check,
         -- null_ls.builtins.diagnostics.eslint,
-        -- null_ls.builtins.diagnostics.flake8,
+        null_ls.builtins.diagnostics.flake8,
         null_ls.builtins.completion.spell,
     },
 })
