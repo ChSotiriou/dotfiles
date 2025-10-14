@@ -1,0 +1,24 @@
+# keymap.toml
+[[mgr.prepend_keymap]]
+on   = [ "t" ]
+run  = 'shell --block zsh'
+desc = "Open Terminal"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "s" ]
+run  = 'cd /mnt/storagebox'
+desc = "Goto StorageBox"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "D" ]
+run  = 'cd $HOME/Documents'
+desc = "Goto Documents"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "d" ]
+run  = [
+  'shell "mkdir -p /tmp/Downloads"',
+  'cd /tmp/Downloads'
+]
+desc = "Goto Downloads"
+
