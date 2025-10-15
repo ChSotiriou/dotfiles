@@ -22,3 +22,17 @@ run  = [
 ]
 desc = "Goto Downloads"
 
+[[mgr.prepend_keymap]]
+on  = [ "d", "r" ]
+run = '''shell --orphan -- 
+    zsh -lic "drag \"$0\""
+'''
+
+
+[[mgr.prepend_keymap]]
+on   = [ "e", "x" ]
+run = '''shell --block -- 
+    zsh -lic "ex \"$0\""
+'''
+# run = 'shell --block -- 7z x "$0"'
+desc = "Extract Archive"

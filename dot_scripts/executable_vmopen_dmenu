@@ -1,0 +1,36 @@
+#!/bin/sh
+
+function qemu_get_vms() {
+    qemu=$(sudo virsh list --all --name | head -n -1)
+}
+
+function vbox_get_vms() {
+    vbox=$(vboxmanage list vms | rev | cut -d ' ' -f 2- | rev | tr -d \")
+}
+
+function vmware_get_vms() {
+    vmware=$(/bin/ls $HOME/Documents/Virtual\ Machines/VMWare | sed "s/\s/\n/g")
+}
+
+
+runnerCommand=""
+
+# qemu_get_vms
+vbox_get_vms
+# vmware_get_vms
+
+vm=$((echo "$vbox"; echo -n "$qemu"; echo -n "$vmware") | rofi -dmenu -i -p "Virtual Machine")
+
+if [ -z "$vm"  ]; then
+    exit -1;
+fi
+
+notify-send "Opening $vm VM"
+
+if [[ $qemu == *"$vm"*  ]]; then
+    virsh --connect qemu:///system start "$vm" && virt-manager --connect qemu:///system --show-domain-console "$vm" && sudo systemctl restart smb
+elif [[ $vbox == *"$vm"* ]]; then
+    vboxmanage startvm "$vm"
+elif [[ $vmware == *"$vm"* ]]; then
+    vmrun -T ws start "$HOME/Documents/Virtual Machines/VMWare/$vm/$vm.vmx"
+fi

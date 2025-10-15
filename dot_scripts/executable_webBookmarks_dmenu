@@ -1,0 +1,11 @@
+#!/bin/sh
+
+DATABASE=$(sed 's/\s*#.*//g; /^$/d' $HOME/.local/share/scripts/webBookmarks.menu | sort)
+OPTIONS=$(echo "$DATABASE" | awk -F '[ \t]*[|][ \t]*' '{print $1}')
+
+choise=$(echo "$OPTIONS" | rofi -dmenu -i -p "Web Bookmarks")
+
+if [ "$choise" ]; then
+    URL=$(echo "$DATABASE" | awk -F '[ \t]*[|][ \t]*' "/^$choise\s/ {print \$2}")
+    $BROWSER "$URL"
+fi

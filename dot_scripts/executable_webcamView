@@ -1,0 +1,5 @@
+#!/bin/sh
+
+videoInput=$(find /dev/ -name 'video*' | sort | rofi -dmenu -p "Webcam")
+
+mpv --no-osc av://v4l2:"$videoInput" --profile=low-latency --untimed

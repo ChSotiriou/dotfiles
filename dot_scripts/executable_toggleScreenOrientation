@@ -1,0 +1,10 @@
+#/bin/sh
+
+function toggleOrientation {
+    ! [ -z $(autorandr --current | grep "myLandscape") ] &&  echo "To Portrait" && autorandr --load myPortrait && return
+    ! [ -z $(autorandr --current | grep "myPortrait") ] && echo "To Landscape" && autorandr --load myLandscape && return
+}
+
+toggleOrientation
+sleep 5
+nitrogen --restore

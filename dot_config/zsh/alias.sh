@@ -108,7 +108,7 @@ alias vl='git log'
 alias gt='cd /tmp'
 alias gc='cd ~/.config'
 alias gb='cd /mnt/storagebox/'
-alias gd='cd ~/Downloads/'
+alias gd='mkdir -p /tmp/Downloads && cd /tmp/Downloads/'
 alias gD='cd ~/Documents/'
 alias gm='cd /run/media'
 

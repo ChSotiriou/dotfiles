@@ -1,0 +1,30 @@
+#!/bin/bash
+
+WALLPAPER=/home/christoss/Pictures/background/LM556-2.jpg
+
+profiles=$(/bin/find $HOME/.config/autorandr/ -mindepth 1 -type d -printf "%f\n")
+defaults="""off
+common
+clone-largest
+vertical
+horizontal"""
+other="""custom
+backgroundReset"""
+
+option=$(echo -n "$profiles $defaults $other" | sort | sed "s/\s/\n/g" | rofi -dmenu -i -p "Monitor Configuration")
+
+[ -z "$option" ] && exit
+
+if [[ $profiles == *"$option"*  ]]; then
+    notify-send "Loading $option"
+    /usr/bin/autorandr --load $option
+elif [[ $defaults == *"$option"*  ]]; then
+    notify-send "Using $option"
+    /usr/bin/autorandr $option
+elif [[ $other == *"$option"*  ]]; then
+    notify-send "Using $option"
+    case $option in
+        $(echo -n "$other" | cut -d$'\n' -f1)) /usr/bin/arandr ;; # custom
+        $(echo -n "$other" | cut -d$'\n' -f2)) /usr/bin/nitrogen --restore; /usr/bin/betterlockscreen -u "$WALLPAPER" ;; # custom
+    esac
+fi

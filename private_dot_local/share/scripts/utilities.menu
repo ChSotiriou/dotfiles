@@ -1,0 +1,2 @@
+Keyboard Mapping          |xmodmap /home/christoss/.config/.Xmodmap
+Polybar Restart           |killall polybar && /home/christoss/.config/polybar/launch.sh

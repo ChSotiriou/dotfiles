@@ -1,0 +1,13 @@
+#!/bin/sh
+
+DATABASE=$(sed 's/\s*#.*//g; /^$/d' $HOME/.local/share/scripts/windowsPrograms | sort)
+OPTIONS=$(echo "$DATABASE" | awk -F '[ \t]*[|][ \t]*' '{print $1}')
+
+choise=$(echo "$OPTIONS" | rofi -dmenu -i -p "Windows Programs")
+
+if [ "$choise" ]; then
+    BOTTLE=$(echo "$DATABASE" | awk -F '[ \t]*[|][ \t]*' "/^$choise\s/ {print \$2}")
+    EXE=$(echo "$DATABASE" | awk -F '[ \t]*[|][ \t]*' "/^$choise\s/ {print \$3}")
+
+    /opt/cxoffice/bin/wine --bottle "$BOTTLE" --cx-app "$EXE" &
+fi

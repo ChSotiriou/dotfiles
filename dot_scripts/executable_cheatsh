@@ -1,0 +1,3 @@
+#!/bin/sh
+
+/bin/curl -s cheat.sh/$1 | /usr/bin/less -R

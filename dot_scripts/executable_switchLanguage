@@ -1,0 +1,14 @@
+#!/bin/sh
+
+current=$(setxkbmap -query | grep -i layout | awk '{print $2}')
+
+case $current in
+    'us') next='gr' ;;
+    'gr') next='pt' ;;
+    'pt') next='us' ;;
+    *) next='us' ;;
+esac
+
+notify-send "Layout: $next"
+setxkbmap $next
+xmodmap ~/.config/.Xmodmap

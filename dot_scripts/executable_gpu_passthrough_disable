@@ -1,0 +1,23 @@
+#!/bin/sh
+
+if [ $(id -u) -ne 0 ]; then
+    /bin/echo "Please run as root"
+    exit 1
+fi
+
+if [ "$1" != "force" ]; then
+    if [ ! -f /etc/modprobe.d/vfio.conf ]; then
+        /bin/echo "GPU Passthrough is not enabled"
+        /bin/echo 'Use `$0 force` to force execution'
+        exit 1
+    fi
+fi
+
+/bin/rm -f /etc/modprobe.d/vfio.conf
+/bin/sed -i 's/^MODULES.*/MODULES=""/' /etc/mkinitcpio.conf
+/usr/bin/mkinitcpio -p linux-lts
+
+# Remove pci device from VM
+temporary=$(mktemp)
+/usr/bin/xmlstarlet edit --delete "/domain/devices/hostdev" /etc/libvirt/qemu/Windows-10.xml > "${temporary}"
+/usr/bin/cp "${temporary}" /etc/libvirt/qemu/Windows-10.xml

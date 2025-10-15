@@ -1,0 +1,5 @@
+#!/bin/sh
+
+VOLUME=$(pactl get-sink-volume @DEFAULT_SINK@ | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,' | head -n 1)
+
+echo $VOLUME

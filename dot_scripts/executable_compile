@@ -1,0 +1,55 @@
+#!/bin/bash
+# General handler for compiling files
+
+file=$(readlink -f "$1")
+dir=${file%/*}
+vimDir="$2"
+base="${file%.*}"
+ext="${file##*.}"
+
+textype() { \
+    command="pdflatex" && \\
+    $command --shell-escape --output-directory="$dir" "$base" && \\
+    TEXMFOUTPUT=$(dirname "$base") bibtex "$base" && \\
+    $command --shell-escape --output-directory="$dir" "$base" 
+    # $command --shell-escape --output-directory="$dir" "$base"
+}
+
+mdtype() { \
+    head=$(head -n 1 "$file")
+    extra_args=""
+
+    # toc
+    if [[ "$head" == *"toc"* ]]; then
+        extra_args=$extra_args"--toc "
+    fi
+
+    pandoc "$file" $extra_args -o "$base".pdf
+}
+
+handlebang() {
+  bang=$(head -n 1 "$file")
+  case "$bang" in
+    *!/bin/sh|*!/bin/bash|*!/bin/zsh) "$file" ;;
+    *!/bin/perl) perl "$file" ;;
+    *!/bin/python) python "$file" ;;
+    *) echo "Can't compile" ;;
+  esac
+}
+
+hasMakeFile() {
+  /bin/ls "$vimDir" | grep -oP '^Makefile$'
+}
+
+if hasMakeFile; then
+    make
+    exit 0
+fi
+
+case "$1" in
+    *.md) mdtype ;;
+    *.tex) textype "$file" ;;
+    *.py) python "$file" ;;
+    *.perl) perl "$file" ;;
+    *) handlebang ;;
+esac

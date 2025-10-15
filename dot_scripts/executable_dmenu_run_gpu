@@ -1,0 +1,3 @@
+#!/bin/sh
+
+rofi -run-command "echo {cmd}" -show run | prime-run ${SHELL:-"/bin/sh"} &
