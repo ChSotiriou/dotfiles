@@ -226,6 +226,16 @@ label:focus {
     background-color: #ffa000;
 }
 
+#custom-notifications.notifications {
+    background-color: #f1c40f;
+    color: #000000;
+    min-width: 30px;
+
+    /* center icon */
+    font-size: 16px;         /* adjust to your bar height */
+    font-family: "Fira Code Nerd Font", monospace; /* use fixed-width font with icons */
+}
+
 #temperature {
     background-color: #f0932b;
 }

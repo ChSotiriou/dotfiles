@@ -14,6 +14,7 @@
         "custom/media"
     ],
     "modules-right": [
+        "custom/notifications",
         "pulseaudio",
         "memory",
         "battery",
@@ -191,5 +192,16 @@
         "on-click": "playerctl play-pause -p spotify",
         "on-click-right": "playerctl next -p spotify",
         "on-double-click-right": "playerctl previous -p spotify"
+    },
+    "custom/notifications": {
+        "format": "{0}",
+        "return-type": "json",
+        "max-length": 40,
+        "escape": false,
+
+        "exec": "/home/christoss/.config/waybar/custom_modules/notifications.py",
+        "on-click": "/home/christoss/.config/waybar/custom_modules/notifications.py TOGGLE"
+        // "on-click-right": "playerctl next -p spotify",
+        // "on-double-click-right": "playerctl previous -p spotify"
     }
 }

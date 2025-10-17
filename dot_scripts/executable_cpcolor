@@ -1,3 +1,3 @@
 #!/bin/sh
 
-hyprpicker | tr -d '\n' | xsel -b
+hyprpicker | tr -d '\n' | wl-copy
