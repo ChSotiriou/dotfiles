@@ -14,6 +14,7 @@
         "custom/media"
     ],
     "modules-right": [
+        "hyprland/language",
         "custom/notifications",
         "pulseaudio",
         "memory",
@@ -192,6 +193,12 @@
         "on-click": "playerctl play-pause -p spotify",
         "on-click-right": "playerctl next -p spotify",
         "on-double-click-right": "playerctl previous -p spotify"
+    },
+    "hyprland/language": {
+        "format": " {}",
+        "format-en": "EN",
+        "format-gr": "GR"
+        // "keyboard-name": "micro-star-int'l-co.,-ltd.-msi-gk50-elite-gaming-keyboard"
     },
     "custom/notifications": {
         "format": "{0}",

@@ -7,5 +7,10 @@ choise=$(echo "$OPTIONS" | rofi -dmenu -i -p "Web Bookmarks")
 
 if [ "$choise" ]; then
     URL=$(echo "$DATABASE" | awk -F '[ \t]*[|][ \t]*' "/^$choise\s/ {print \$2}")
-    $BROWSER "$URL"
+
+    if [ "$URL" ]; then
+        $BROWSER "$URL"
+    else
+        $BROWSER "$choise"
+    fi
 fi
