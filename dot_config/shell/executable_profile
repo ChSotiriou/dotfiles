@@ -29,5 +29,5 @@ source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/.zshenv"
 
 if [[ "$(tty)" == "/dev/tty1" ]]
 then
-    Hyprland
+    start-hyprland
 fi

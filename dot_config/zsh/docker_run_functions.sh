@@ -14,7 +14,7 @@ function penenv() {
     if [ $(checkContainerRunning "penenv") ]; then
         sudo docker exec -it penenv bash
     else
-        sudo docker run --net=host --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it --rm --name penenv -v "$(pwd)":/root/data christoss/penenv bash
+        sudo docker run --net=host --privileged --cap-add=all --security-opt seccomp=unconfined -it --rm --name penenv -v "$(pwd)":/root/data christoss/penenv bash
     fi
 }
 
