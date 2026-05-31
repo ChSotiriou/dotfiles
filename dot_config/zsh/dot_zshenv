@@ -17,6 +17,8 @@ export PICO_SDK_PATH=/usr/share/pico-sdk/
 
 export TESSDATA_PREFIX=/usr/share/tessdata
 
+export VIRTUALENVWRAPPER_PYTHON=/home/christoss/.local/share/pyenv/shims/python3
+
 export LF_ICONS="\
 di=:\
 fi=:\
