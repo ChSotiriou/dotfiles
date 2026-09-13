@@ -30,8 +30,7 @@ local plugins = {
     'hrsh7th/cmp-cmdline',
     'hrsh7th/nvim-cmp',
 
-    'nvim-treesitter/nvim-treesitter',
-    'nvim-treesitter/playground',
+    "nvim-treesitter/nvim-treesitter",
 
     'cdelledonne/vim-cmake',
 
@@ -80,8 +79,11 @@ local plugins = {
 
     "christoomey/vim-tmux-navigator",
 
-    { "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
+    -- { "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
     'saadparwaiz1/cmp_luasnip',
+
+    'preservim/vim-markdown',
+    'godlygeek/tabular',
 }
 
 local opts = {}
